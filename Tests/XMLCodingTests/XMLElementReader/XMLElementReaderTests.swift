@@ -13,7 +13,7 @@ class XMLElementReaderTests: XCTestCase {
     func test_read_invalid_string() throws {
         let reader = XMLElementReader()
         
-        // Invalid UTF8 byte sequence:
+        // Invalid UTF-8 byte sequence:
         let xmlData = Data(bytes: [0x80, 0xBF])
         
         XCTAssertThrowsError(try reader.read(from: xmlData))

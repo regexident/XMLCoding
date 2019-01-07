@@ -35,16 +35,7 @@ public struct XMLElementNode: Equatable {
     public var info: XMLElementNodeInfo
     public var attributes: [String: String]
     public var content: XMLElementNodeContent
-    
-    public var kind: XMLElementNodeKind {
-        switch self.content {
-        case .empty(_): return .empty
-        case .simple(_): return .simple
-        case .complex(_): return .complex
-        case .mixed(_): return .mixed
-        }
-    }
-    
+        
     public static func empty(name: String, attributes: [String: String] = [:]) -> XMLElementNode {
         return XMLElementNode(
             info: XMLElementNodeInfo(name: name),
@@ -99,30 +90,27 @@ public struct XMLElementNode: Equatable {
     
     public func accept<T: XMLElementVisitor>(visitor: T) throws {
         let info = self.info
-        let kind = self.kind
         let attributes = self.attributes
         switch self.content {
         case .empty(_):
-            try visitor.visit(start: kind, info: info, attributes: attributes)
-            // intentionally left blank
-            try visitor.visit(end: kind, info: info)
+            try visitor.visit(element: info, attributes: attributes)
         case .simple(let content):
-            try visitor.visit(start: kind, info: info, attributes: attributes)
+            try visitor.enter(element: info, attributes: attributes)
             switch content {
             case .string(let string):
                 try visitor.visit(string: string)
             case .data(let data):
                 try visitor.visit(data: data)
             }
-            try visitor.visit(end: kind, info: info)
+            try visitor.exit(element: info)
         case .complex(let content):
-            try visitor.visit(start: kind, info: info, attributes: attributes)
+            try visitor.enter(element: info, attributes: attributes)
             for element in content.elements {
                 try element.accept(visitor: visitor)
             }
-            try visitor.visit(end: kind, info: info)
+            try visitor.exit(element: info)
         case .mixed(let content):
-            try visitor.visit(start: kind, info: info, attributes: attributes)
+            try visitor.enter(element: info, attributes: attributes)
             for item in content.items {
                 switch item {
                 case .string(let string):
@@ -133,7 +121,7 @@ public struct XMLElementNode: Equatable {
                     try element.accept(visitor: visitor)
                 }
             }
-            try visitor.visit(end: kind, info: info)
+            try visitor.exit(element: info)
         }
     }
 }
