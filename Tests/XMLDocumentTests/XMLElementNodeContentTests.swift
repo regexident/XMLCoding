@@ -1,43 +1,5 @@
-//
-//  XMLElementNodeContentTests.swift
-//  XMLCodingTests
-//
-//  Created by Vincent Esche on 1/3/19.
-//  Copyright © 2019 Vincent Esche. All rights reserved.
-//
-
 import XCTest
-@testable import XMLCoding
-
-extension XMLElementNodeContent {
-    var string: String? {
-        guard case .simple(.string(let string)) = self else {
-            return nil
-        }
-        return string
-    }
-    
-    var data: Data? {
-        guard case .simple(.data(let data)) = self else {
-            return nil
-        }
-        return data
-    }
-    
-    var elements: [XMLElementNode]? {
-        guard case .complex(let content) = self else {
-            return nil
-        }
-        return content.elements
-    }
-    
-    var items: [XMLMixedContentItem]? {
-        guard case .mixed(let content) = self else {
-            return nil
-        }
-        return content.items
-    }
-}
+@testable import XMLDocument
 
 class XMLElementNodeContentTests: XCTestCase {
     let elementName: String = "foo"

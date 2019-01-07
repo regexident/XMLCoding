@@ -1,11 +1,3 @@
-//
-//  XMLElementNodeContent.swift
-//  XMLCoding
-//
-//  Created by Vincent Esche on 1/3/19.
-//  Copyright © 2019 Vincent Esche. All rights reserved.
-//
-
 import Foundation
 
 /// State machine determining element population:
@@ -57,6 +49,34 @@ public enum XMLElementNodeContent: Equatable {
             return false
         }
         return true
+    }
+    
+    public var string: String? {
+        guard case .simple(.string(let string)) = self else {
+            return nil
+        }
+        return string
+    }
+    
+    public var data: Data? {
+        guard case .simple(.data(let data)) = self else {
+            return nil
+        }
+        return data
+    }
+    
+    public var elements: [XMLElementNode]? {
+        guard case .complex(let content) = self else {
+            return nil
+        }
+        return content.elements
+    }
+    
+    public var items: [XMLMixedContentItem]? {
+        guard case .mixed(let content) = self else {
+            return nil
+        }
+        return content.items
     }
     
     public mutating func append(string: String) {

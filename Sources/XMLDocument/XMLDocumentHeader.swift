@@ -1,10 +1,3 @@
-//
-//  XMLDocumentHeader.swift
-//  XMLCoding
-//
-//  Created by Vincent Esche on 1/7/19.
-//
-
 import Foundation
 
 public struct XMLDocumentHeader {
@@ -25,7 +18,7 @@ public struct XMLDocumentHeader {
         self.standalone = standalone
     }
     
-    var isEmpty: Bool {
+    public var isEmpty: Bool {
         guard self.version == nil else {
             return false
         }

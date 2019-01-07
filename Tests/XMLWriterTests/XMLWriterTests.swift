@@ -1,12 +1,6 @@
-//
-//  XMLElementWriterTests.swift
-//  XMLCodingTests
-//
-//  Created by Vincent Esche on 1/4/19.
-//
-
 import XCTest
-@testable import XMLCoding
+@testable import XMLDocument
+@testable import XMLWriter
 
 extension OutputStream {
     var inMemoryData: Data? {
@@ -20,10 +14,10 @@ extension OutputStream {
     }
 }
 
-class XMLElementWriterTests: XCTestCase {
+class XMLWriterTests: XCTestCase {
     func test_writeStartOfDocument_no_header() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.writeStartOfDocument(header: nil)
         
@@ -33,7 +27,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_writeStartOfDocument_header_empty() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         let header = XMLDocumentHeader(version: nil, encoding: nil, standalone: nil)
         try writer.writeStartOfDocument(header: header)
@@ -44,7 +38,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_writeStartOfDocument_header_version() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         let header = XMLDocumentHeader(version: "1.0", encoding: nil, standalone: nil)
         try writer.writeStartOfDocument(header: header)
@@ -55,7 +49,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_writeStartOfDocument_header_encoding() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         let header = XMLDocumentHeader(version: nil, encoding: "UTF-8", standalone: nil)
         try writer.writeStartOfDocument(header: header)
@@ -66,7 +60,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_writeStartOfDocument_header_standalone() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         let header = XMLDocumentHeader(version: nil, encoding: nil, standalone: "yes")
         try writer.writeStartOfDocument(header: header)
@@ -77,7 +71,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_writeStartOfDocument_header_version_encoding_standalone() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         let header = XMLDocumentHeader(version: "1.0", encoding: "UTF-8", standalone: "yes")
         try writer.writeStartOfDocument(header: header)
@@ -88,7 +82,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_writeEndOfDocument() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
 
         try writer.writeEndOfDocument()
 
@@ -98,7 +92,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_processingInstruction() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(
             processingInstruction: XMLProcessingInstruction(
@@ -113,7 +107,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_comment() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(comment: "lorem & ipsum")
         
@@ -123,7 +117,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_whitespace() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(whitespace: "\t\t\t")
         
@@ -133,7 +127,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_string() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(string: "lorem & ipsum")
         
@@ -143,7 +137,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_data() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(data: "lorem & ipsum".data(using: .utf8)!)
         
@@ -153,7 +147,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_element_start() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(start: XMLElementNodeInfo(name: "foo"))
         
@@ -163,7 +157,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_element_start_with_attributes() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(
             start: XMLElementNodeInfo(name: "foo"),
@@ -176,7 +170,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_element_end() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(end: XMLElementNodeInfo(name: "foo"))
         
@@ -186,7 +180,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_element_empty() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(empty: XMLElementNodeInfo(name: "foo"))
         
@@ -196,7 +190,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_element_empty_with_attributes() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(
             empty: XMLElementNodeInfo(name: "foo"),
@@ -209,7 +203,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_fragment_empty() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(fragment: .empty(
             name: "foo"
@@ -221,7 +215,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_fragment_simple_string() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(fragment: .string(
             name: "foo",
@@ -234,7 +228,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_fragment_simple_data() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(fragment: .data(
             name: "foo",
@@ -247,7 +241,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_fragment_complex() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(fragment: .complex(
             name: "foo",
@@ -263,7 +257,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_fragment_mixed() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(fragment: .mixed(
             name: "foo",
@@ -281,7 +275,7 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_fragment_deep() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         try writer.write(fragment: .mixed(
             name: "foo",
@@ -300,11 +294,11 @@ class XMLElementWriterTests: XCTestCase {
     func test_write_document_exceeding_stream_memory() throws {
         var buffer: [UInt8] = []
         let stream = OutputStream(toBuffer: &buffer, capacity: 0)
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
         // This is expected to fail as the buffer doesn't have any capacity:
         XCTAssertThrowsError(
-            try writer.write(document: XMLCoding.XMLDocument(
+            try writer.write(document: XMLDocumentNode(
                 header: nil,
                 rootElement: .empty(
                     name: "foo"
@@ -313,27 +307,11 @@ class XMLElementWriterTests: XCTestCase {
         )
     }
     
-    func test_write_document_exceeding_stream_memory_2() throws {
-        var buffer: [UInt8] = [42, 42, 42, 42, 42, 42]
-        let stream = OutputStream(toBuffer: &buffer, capacity: 6)
-        let writer = XMLElementWriter(stream: stream)
-        
-        // This is expected to fail as the buffer doesn't have any capacity:
-//        XCTAssertThrowsError(
-            try writer.write(document: XMLCoding.XMLDocument(
-                header: nil,
-                rootElement: .empty(
-                    name: "foo"
-                )
-            ))
-//        )
-    }
-    
     func test_write_document_empty() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
-        try writer.write(document: XMLCoding.XMLDocument(
+        try writer.write(document: XMLDocumentNode(
             header: nil,
             rootElement: .empty(
                 name: "foo"
@@ -346,9 +324,9 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_document_empty_with_header() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
-        try writer.write(document: XMLCoding.XMLDocument(
+        try writer.write(document: XMLDocumentNode(
             header: XMLDocumentHeader(version: "1.0", encoding: "UTF-8"),
             rootElement: .empty(
                 name: "foo"
@@ -366,9 +344,9 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_document_deep() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
-        try writer.write(document: XMLCoding.XMLDocument(
+        try writer.write(document: XMLDocumentNode(
             header: nil,
             rootElement: .mixed(
                 name: "foo",
@@ -387,9 +365,9 @@ class XMLElementWriterTests: XCTestCase {
     
     func test_write_document_deep_with_header() throws {
         let stream = OutputStream.toMemory()
-        let writer = XMLElementWriter(stream: stream)
+        let writer = XMLWriter(stream: stream)
         
-        try writer.write(document: XMLCoding.XMLDocument(
+        try writer.write(document: XMLDocumentNode(
             header: XMLDocumentHeader(version: "1.0", encoding: "UTF-8"),
             rootElement: .mixed(
                 name: "foo",

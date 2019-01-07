@@ -1,13 +1,8 @@
-//
-//  XMLElementWriter.swift
-//  XMLCoding
-//
-//  Created by Vincent Esche on 1/4/19.
-//
-
 import Foundation
 
-public class XMLElementWriter: NSObject {
+import XMLDocument
+
+public class XMLWriter: NSObject {
     fileprivate var stream: OutputStream
     
     public init(stream: OutputStream) {
@@ -19,7 +14,7 @@ public class XMLElementWriter: NSObject {
         self.stream.close()
     }
     
-    public func write(document: XMLDocument) throws {
+    public func write(document: XMLDocumentNode) throws {
         try document.accept(visitor: self)
     }
     
@@ -92,6 +87,8 @@ public class XMLElementWriter: NSObject {
     internal func write(comment: String) throws {
         let escapedComment = self.escaped(comment: comment)
         
+        // FIXME: Check for forbidden "--" in `escapedComment`.
+        
         try self.write(raw: "<!-- ")
         try self.write(raw: escapedComment)
         try self.write(raw: " -->")
@@ -99,6 +96,7 @@ public class XMLElementWriter: NSObject {
     
     internal func write(whitespace whitespaceString: String) throws {
         // FIXME: Check for whitespace-ness, before writing.
+        
         try self.write(raw: whitespaceString)
     }
     
@@ -109,7 +107,9 @@ public class XMLElementWriter: NSObject {
     
     internal func write(data: Data) throws {
         let string = String(data: data, encoding: .utf8)!
+        
         // FIXME: Check for forbidden "]]>" in `string`.
+        
         try self.write(raw: "<![CDATA[\(string)]]>")
     }
     

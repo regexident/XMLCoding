@@ -1,13 +1,5 @@
-//
-//  XMLSimpleContentTests.swift
-//  XMLCodingTests
-//
-//  Created by Vincent Esche on 1/3/19.
-//  Copyright © 2019 Vincent Esche. All rights reserved.
-//
-
 import XCTest
-@testable import XMLCoding
+@testable import XMLDocument
 
 class XMLSimpleContentTests: XCTestCase {
     func testStringItem() {
@@ -27,6 +19,7 @@ class XMLSimpleContentTests: XCTestCase {
         let subject: XMLSimpleContent = .data(data)
         
         XCTAssertEqual(subject.data, data)
-        XCTAssertEqual(subject.string, string)
+        
+        XCTAssertNil(subject.string, string)
     }
 }

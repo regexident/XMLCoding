@@ -1,11 +1,3 @@
-//
-//  XMLElementNode.swift
-//  XMLCoding
-//
-//  Created by Vincent Esche on 1/3/19.
-//  Copyright © 2019 Vincent Esche. All rights reserved.
-//
-
 import Foundation
 
 public struct XMLElementNodeInfo: Equatable {
@@ -24,18 +16,11 @@ public struct XMLElementNodeInfo: Equatable {
     }
 }
 
-public enum XMLElementNodeKind {
-    case empty
-    case simple
-    case complex
-    case mixed
-}
-
 public struct XMLElementNode: Equatable {
     public var info: XMLElementNodeInfo
     public var attributes: [String: String]
     public var content: XMLElementNodeContent
-        
+    
     public static func empty(name: String, attributes: [String: String] = [:]) -> XMLElementNode {
         return XMLElementNode(
             info: XMLElementNodeInfo(name: name),
@@ -87,8 +72,12 @@ public struct XMLElementNode: Equatable {
     public mutating func append(element: XMLElementNode) {
         self.content.append(element: element)
     }
+}
+
+extension XMLElementNode: XMLVisitable {
+    public typealias Output = ()
     
-    public func accept<T: XMLElementVisitor>(visitor: T) throws {
+    public func accept<T: XMLVisitor>(visitor: T) throws -> () {
         let info = self.info
         let attributes = self.attributes
         switch self.content {

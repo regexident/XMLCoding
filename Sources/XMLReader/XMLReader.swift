@@ -1,24 +1,26 @@
-//
-//  XMLElementNode.swift
-//  XMLCoding
-//
-//  Created by Vincent Esche on 1/3/19.
-//  Copyright © 2019 Vincent Esche. All rights reserved.
-//
-
 import Foundation
 
-class XMLElementReader: NSObject {
+import XMLDocument
+
+class XMLReader: NSObject {
     private var stack: [XMLElementNode] = []
     private var error: Error? = nil
     
+    func read(from data: Data) throws -> XMLDocumentNode {
+        let rootElement: XMLElementNode = try self.read(from: data)
+        
+        return XMLDocumentNode(rootElement: rootElement)
+    }
+    
     func read(from data: Data) throws -> XMLElementNode {
         try XMLParser.parse(data: data, delegate: self)
-    
+        
         return self.stack[0]
     }
 
-    func withCurrentElement(_ body: (inout XMLElementNode) throws -> ()) rethrows {
+    fileprivate func withCurrentElement(
+        _ body: (inout XMLElementNode) throws -> ()
+    ) rethrows {
         guard !self.stack.isEmpty else {
             return
         }
@@ -26,17 +28,18 @@ class XMLElementReader: NSObject {
     }
 }
 
-extension XMLElementReader: XMLParserDelegate {
+extension XMLReader: XMLParserDelegate {
     func parserDidStartDocument(_: XMLParser) {
         self.stack = []
         self.error = nil
     }
 
     func parser(_: XMLParser,
-                didStartElement elementName: String,
-                namespaceURI _: String?,
-                qualifiedName _: String?,
-                attributes attributeDict: [String: String] = [:]) {
+        didStartElement elementName: String,
+        namespaceURI _: String?,
+        qualifiedName _: String?,
+        attributes attributeDict: [String: String] = [:]
+    ) {
         
         let element = XMLElementNode.empty(
             name: elementName,
@@ -81,6 +84,5 @@ extension XMLElementReader: XMLParserDelegate {
     
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
         self.error = parseError
-//        fatalError("ERROR: \(parseError)")
     }
 }

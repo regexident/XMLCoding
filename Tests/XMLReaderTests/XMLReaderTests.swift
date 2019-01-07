@@ -1,26 +1,23 @@
-//
-//  XMLElementReaderTests.swift
-//  ests
-//
-//  Created by Vincent Esche on 1/3/19.
-//  Copyright © 2019 Vincent Esche. All rights reserved.
-//
-
 import XCTest
-@testable import XMLCoding
+@testable import XMLDocument
+@testable import XMLReader
 
-class XMLElementReaderTests: XCTestCase {
+class XMLReaderTests: XCTestCase {
     func test_read_invalid_string() throws {
-        let reader = XMLElementReader()
+        let reader = XMLReader()
         
         // Invalid UTF-8 byte sequence:
         let xmlData = Data(bytes: [0x80, 0xBF])
         
-        XCTAssertThrowsError(try reader.read(from: xmlData))
+        XCTAssertThrowsError(
+            try {
+                let _: XMLDocumentNode = try reader.read(from: xmlData)
+            }()
+        )
     }
     
     func test_read_invalid_xml() throws {
-        let reader = XMLElementReader()
+        let reader = XMLReader()
         
         // Invalid XML string (invalid use of meta-chararacter `&`):
         let xmlString =
@@ -31,11 +28,15 @@ lorem ipsum & dolor sit amet
 """
         let xmlData = xmlString.data(using: .utf8)!
         
-        XCTAssertThrowsError(try reader.read(from: xmlData))
+        XCTAssertThrowsError(
+            try {
+                let _: XMLDocumentNode = try reader.read(from: xmlData)
+            }()
+        )
     }
     
     func test_read_empty() throws {
-        let reader = XMLElementReader()
+        let reader = XMLReader()
         
         let xmlString =
 """
@@ -45,7 +46,8 @@ lorem ipsum & dolor sit amet
 """
         let xmlData = xmlString.data(using: .utf8)!
         
-        let element = try reader.read(from: xmlData)
+        let document: XMLDocumentNode = try reader.read(from: xmlData)
+        let element = document.rootElement
         
         XCTAssertEqual(element.info.name, "container")
         XCTAssertEqual(element.attributes, ["attribute": "ATTRIBUTE"])
@@ -53,7 +55,7 @@ lorem ipsum & dolor sit amet
     }
     
     func test_read_string() throws {
-        let reader = XMLElementReader()
+        let reader = XMLReader()
         
         let xmlString =
 """
@@ -63,7 +65,8 @@ lorem ipsum & dolor sit amet
 """
         let xmlData = xmlString.data(using: .utf8)!
         
-        let element = try reader.read(from: xmlData)
+        let document: XMLDocumentNode = try reader.read(from: xmlData)
+        let element = document.rootElement
         
         XCTAssertEqual(element.info.name, "container")
         XCTAssertEqual(element.attributes, ["attribute": "ATTRIBUTE"])
@@ -71,7 +74,7 @@ lorem ipsum & dolor sit amet
     }
     
     func test_read_data() throws {
-        let reader = XMLElementReader()
+        let reader = XMLReader()
         
         let xmlString =
         """
@@ -81,7 +84,8 @@ lorem ipsum & dolor sit amet
 """
         let xmlData = xmlString.data(using: .utf8)!
         
-        let element = try reader.read(from: xmlData)
+        let document: XMLDocumentNode = try reader.read(from: xmlData)
+        let element = document.rootElement
         
         XCTAssertEqual(element.info.name, "container")
         XCTAssertEqual(element.attributes, ["attribute": "ATTRIBUTE"])
@@ -89,7 +93,7 @@ lorem ipsum & dolor sit amet
     }
     
     func test_read_complex() throws {
-        let reader = XMLElementReader()
+        let reader = XMLReader()
         
         let xmlString =
         """
@@ -100,7 +104,8 @@ lorem ipsum & dolor sit amet
 """
         let xmlData = xmlString.data(using: .utf8)!
         
-        let element = try reader.read(from: xmlData)
+        let document: XMLDocumentNode = try reader.read(from: xmlData)
+        let element = document.rootElement
         
         XCTAssertEqual(element.info.name, "container")
         XCTAssertEqual(element.attributes, ["attribute": "ATTRIBUTE"])
@@ -111,7 +116,7 @@ lorem ipsum & dolor sit amet
     }
     
     func test_read_mixed() throws {
-        let reader = XMLElementReader()
+        let reader = XMLReader()
         
         let xmlString =
         """
@@ -123,7 +128,8 @@ lorem ipsum & dolor sit amet
 """
         let xmlData = xmlString.data(using: .utf8)!
         
-        let element = try reader.read(from: xmlData)
+        let document: XMLDocumentNode = try reader.read(from: xmlData)
+        let element = document.rootElement
         
         XCTAssertEqual(element.info.name, "container")
         XCTAssertEqual(element.attributes, ["attribute": "ATTRIBUTE"])
@@ -135,7 +141,7 @@ lorem ipsum & dolor sit amet
     }
     
     func test_read_deep() throws {
-        let reader = XMLElementReader()
+        let reader = XMLReader()
         
         let xmlString =
         """
@@ -149,7 +155,8 @@ lorem ipsum & dolor sit amet
 """
         let xmlData = xmlString.data(using: .utf8)!
         
-        let element = try reader.read(from: xmlData)
+        let document: XMLDocumentNode = try reader.read(from: xmlData)
+        let element = document.rootElement
         
         XCTAssertEqual(element.info.name, "container")
         XCTAssertEqual(element.attributes, ["attribute": "ATTRIBUTE"])

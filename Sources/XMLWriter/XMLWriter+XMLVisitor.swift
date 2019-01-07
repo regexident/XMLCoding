@@ -1,14 +1,9 @@
-//
-//  XMLElementWriter+XMLElementVisitor.swift
-//  XMLCoding
-//
-//  Created by Vincent Esche on 1/5/19.
-//
-
 import Foundation
 
-extension XMLElementWriter: XMLElementVisitor {
-    public func enter(document: XMLDocument) throws {
+import XMLDocument
+
+extension XMLWriter: XMLVisitor {
+    public func enter(document: XMLDocumentNode) throws {
         try self.writeStartOfDocument(header: document.header)
     }
     

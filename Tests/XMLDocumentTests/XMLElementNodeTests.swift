@@ -1,13 +1,5 @@
-//
-//  XMLElementNodeTests.swift
-//  XMLCodingTests
-//
-//  Created by Vincent Esche on 1/3/19.
-//  Copyright © 2019 Vincent Esche. All rights reserved.
-//
-
 import XCTest
-@testable import XMLCoding
+@testable import XMLDocument
 
 class XMLElementNodeTests: XCTestCase {
     let elementName: String = "foo"
@@ -36,7 +28,7 @@ extension XMLElementNodeTests {
     func test_empty() {
         let subject = XMLElementNode.empty(name: self.elementName)
         
-        XCTAssertTrue(subject.content.isEmpty)
+        XCTAssertNotNil(subject.content.isEmpty)
     }
     
     func test_string() {

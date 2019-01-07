@@ -1,10 +1,3 @@
-//
-//  String+Extensions.swift
-//  XMLCoding
-//
-//  Created by Vincent Esche on 1/4/19.
-//
-
 import Foundation
 
 extension String {

@@ -1,13 +1,5 @@
-//
-//  XMLMixedContentItemTests.swift
-//  XMLCodingTests
-//
-//  Created by Vincent Esche on 1/3/19.
-//  Copyright © 2019 Vincent Esche. All rights reserved.
-//
-
 import XCTest
-@testable import XMLCoding
+@testable import XMLDocument
 
 class XMLMixedContentTests: XCTestCase {
     func testStringItem() {
