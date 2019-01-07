@@ -46,7 +46,11 @@ class XMLMixedContentItemTests: XCTestCase {
     }
     
     func testElementItem() {
-        let element = XMLElementNode(key: "foo", attributes: [:], content: .empty(XMLEmptyContent()))
+        let element = XMLElementNode(
+            info: XMLElementNodeInfo(name: "foo"),
+            attributes: [:],
+            content: .empty(XMLEmptyContent())
+        )
         
         let subject: XMLMixedContentItem = .element(element)
         

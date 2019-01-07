@@ -10,13 +10,13 @@ import XCTest
 @testable import XMLCoding
 
 class XMLElementNodeTests: XCTestCase {
-    let key: String = "foo"
+    let elementName: String = "foo"
     let attributes: [String: String] = ["bar": "baz"]
     let content: XMLElementNodeContent = .empty(XMLEmptyContent())
     
     func element() -> XMLElementNode {
         return XMLElementNode(
-            key: self.key,
+            info: XMLElementNodeInfo(name: self.elementName),
             attributes: self.attributes,
             content: self.content
         )
@@ -28,37 +28,37 @@ extension XMLElementNodeTests {
     func test_init() {
         let subject = self.element()
         
-        XCTAssertEqual(subject.key, self.key)
+        XCTAssertEqual(subject.info.name, self.elementName)
         XCTAssertEqual(subject.attributes, self.attributes)
         XCTAssertEqual(subject.content, self.content)
     }
     
     func test_empty() {
-        let subject = XMLElementNode.empty(key: self.key)
+        let subject = XMLElementNode.empty(name: self.elementName)
         
         XCTAssertTrue(subject.content.isEmpty)
     }
     
     func test_string() {
-        let subject = XMLElementNode.string(key: self.key, string: "foo")
+        let subject = XMLElementNode.string(name: self.elementName, string: "foo")
         
         XCTAssertTrue(subject.content.isSimple)
     }
     
     func test_data() {
-        let subject = XMLElementNode.data(key: self.key, data: "foo".data(using: .utf8)!)
+        let subject = XMLElementNode.data(name: self.elementName, data: "foo".data(using: .utf8)!)
         
         XCTAssertTrue(subject.content.isSimple)
     }
     
     func test_complex() {
-        let subject = XMLElementNode.complex(key: self.key, elements: [])
+        let subject = XMLElementNode.complex(name: self.elementName, elements: [])
         
         XCTAssertTrue(subject.content.isComplex)
     }
     
     func test_mixed() {
-        let subject = XMLElementNode.mixed(key: self.key, items: [])
+        let subject = XMLElementNode.mixed(name: self.elementName, items: [])
         
         XCTAssertTrue(subject.content.isMixed)
     }
@@ -94,7 +94,7 @@ extension XMLElementNodeTests {
     
     func test_append_with_element() {
         let element = XMLElementNode(
-            key: self.key,
+            info: XMLElementNodeInfo(name: self.elementName),
             attributes: self.attributes,
             content: .empty(XMLEmptyContent())
         )

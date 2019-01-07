@@ -10,7 +10,7 @@ import XCTest
 @testable import XMLCoding
 
 class XMLElementReaderTests: XCTestCase {
-    func test_parse_invalid_string() throws {
+    func test_read_invalid_string() throws {
         let reader = XMLElementReader()
         
         // Invalid UTF8 byte sequence:
@@ -19,7 +19,7 @@ class XMLElementReaderTests: XCTestCase {
         XCTAssertThrowsError(try reader.read(from: xmlData))
     }
     
-    func test_parse_invalid_xml() throws {
+    func test_read_invalid_xml() throws {
         let reader = XMLElementReader()
         
         // Invalid XML string (invalid use of meta-chararacter `&`):
@@ -34,7 +34,7 @@ lorem ipsum & dolor sit amet
         XCTAssertThrowsError(try reader.read(from: xmlData))
     }
     
-    func test_parse_empty() throws {
+    func test_read_empty() throws {
         let reader = XMLElementReader()
         
         let xmlString =
@@ -47,12 +47,12 @@ lorem ipsum & dolor sit amet
         
         let element = try reader.read(from: xmlData)
         
-        XCTAssertEqual(element.key, "container")
+        XCTAssertEqual(element.info.name, "container")
         XCTAssertEqual(element.attributes, ["attribute": "ATTRIBUTE"])
         XCTAssertTrue(element.content.isEmpty)
     }
     
-    func test_parse_string() throws {
+    func test_read_string() throws {
         let reader = XMLElementReader()
         
         let xmlString =
@@ -65,12 +65,12 @@ lorem ipsum & dolor sit amet
         
         let element = try reader.read(from: xmlData)
         
-        XCTAssertEqual(element.key, "container")
+        XCTAssertEqual(element.info.name, "container")
         XCTAssertEqual(element.attributes, ["attribute": "ATTRIBUTE"])
         XCTAssertEqual(element.content.string, "STRING")
     }
     
-    func test_parse_data() throws {
+    func test_read_data() throws {
         let reader = XMLElementReader()
         
         let xmlString =
@@ -83,12 +83,12 @@ lorem ipsum & dolor sit amet
         
         let element = try reader.read(from: xmlData)
         
-        XCTAssertEqual(element.key, "container")
+        XCTAssertEqual(element.info.name, "container")
         XCTAssertEqual(element.attributes, ["attribute": "ATTRIBUTE"])
         XCTAssertEqual(element.content.data, "DATA".data(using: .utf8)!)
     }
     
-    func test_parse_complex() throws {
+    func test_read_complex() throws {
         let reader = XMLElementReader()
         
         let xmlString =
@@ -102,15 +102,15 @@ lorem ipsum & dolor sit amet
         
         let element = try reader.read(from: xmlData)
         
-        XCTAssertEqual(element.key, "container")
+        XCTAssertEqual(element.info.name, "container")
         XCTAssertEqual(element.attributes, ["attribute": "ATTRIBUTE"])
         XCTAssertEqual(element.content.elements, [
-            XMLElementNode.empty(key: "foo"),
-            XMLElementNode.empty(key: "bar"),
+            XMLElementNode.empty(name: "foo"),
+            XMLElementNode.empty(name: "bar"),
         ])
     }
     
-    func test_parse_mixed() throws {
+    func test_read_mixed() throws {
         let reader = XMLElementReader()
         
         let xmlString =
@@ -125,16 +125,16 @@ lorem ipsum & dolor sit amet
         
         let element = try reader.read(from: xmlData)
         
-        XCTAssertEqual(element.key, "container")
+        XCTAssertEqual(element.info.name, "container")
         XCTAssertEqual(element.attributes, ["attribute": "ATTRIBUTE"])
         XCTAssertEqual(element.content.items, [
             .string("foo"),
-            .element(.empty(key: "bar")),
+            .element(.empty(name: "bar")),
             .data("DATA".data(using: .utf8)!),
         ])
     }
     
-    func test_parse_deep() throws {
+    func test_read_deep() throws {
         let reader = XMLElementReader()
         
         let xmlString =
@@ -151,12 +151,12 @@ lorem ipsum & dolor sit amet
         
         let element = try reader.read(from: xmlData)
         
-        XCTAssertEqual(element.key, "container")
+        XCTAssertEqual(element.info.name, "container")
         XCTAssertEqual(element.attributes, ["attribute": "ATTRIBUTE"])
         XCTAssertEqual(element.content.items, [
             .string("foo"),
-            .element(.complex(key: "bar", elements: [
-                XMLElementNode.empty(key: "baz"),
+            .element(.complex(name: "bar", elements: [
+                XMLElementNode.empty(name: "baz"),
             ])),
             .data("DATA".data(using: .utf8)!),
         ])

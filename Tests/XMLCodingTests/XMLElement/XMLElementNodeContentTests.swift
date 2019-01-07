@@ -40,7 +40,7 @@ extension XMLElementNodeContent {
 }
 
 class XMLElementNodeContentTests: XCTestCase {
-    let key: String = "foo"
+    let elementName: String = "foo"
     let attributes: [String: String] = ["bar": "baz"]
     
     let string: String = "string"
@@ -104,7 +104,7 @@ class XMLElementNodeContentTests: XCTestCase {
     
     func element(with content: XMLElementNodeContent) -> XMLElementNode {
         return XMLElementNode(
-            key: self.key,
+            info: XMLElementNodeInfo(name: self.elementName),
             attributes: self.attributes,
             content: content
         )

@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct XMLComplexContent: Equatable {
-    var elements: [XMLElementNode] = []
+public struct XMLComplexContent: Equatable {
+    public var elements: [XMLElementNode] = []
 }

@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct XMLEmptyContent: Equatable {
+public struct XMLEmptyContent: Equatable {
     
 }

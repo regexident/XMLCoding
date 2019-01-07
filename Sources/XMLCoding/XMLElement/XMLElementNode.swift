@@ -8,60 +8,132 @@
 
 import Foundation
 
-struct XMLElementNode: Equatable {
-    var key: String
-    var attributes: [String: String]
-    var content: XMLElementNodeContent
+public struct XMLElementNodeInfo: Equatable {
+    public var name: String
+    public var namespaceURI: String? = nil
+    public var qualifiedName: String? = nil
     
-    static func empty(key: String, attributes: [String: String] = [:]) -> XMLElementNode {
+    init(
+        name: String,
+        namespaceURI: String? = nil,
+        qualifiedName: String? = nil
+    ) {
+        self.name = name
+        self.namespaceURI = namespaceURI
+        self.qualifiedName = qualifiedName
+    }
+}
+
+public enum XMLElementNodeKind {
+    case empty
+    case simple
+    case complex
+    case mixed
+}
+
+public struct XMLElementNode: Equatable {
+    public var info: XMLElementNodeInfo
+    public var attributes: [String: String]
+    public var content: XMLElementNodeContent
+    
+    public var kind: XMLElementNodeKind {
+        switch self.content {
+        case .empty(_): return .empty
+        case .simple(_): return .simple
+        case .complex(_): return .complex
+        case .mixed(_): return .mixed
+        }
+    }
+    
+    public static func empty(name: String, attributes: [String: String] = [:]) -> XMLElementNode {
         return XMLElementNode(
-            key: key,
+            info: XMLElementNodeInfo(name: name),
             attributes: attributes,
             content: .empty(XMLEmptyContent())
         )
     }
     
-    static func string(key: String, string: String, attributes: [String: String] = [:]) -> XMLElementNode {
+    public static func string(name: String, string: String, attributes: [String: String] = [:]) -> XMLElementNode {
         return XMLElementNode(
-            key: key,
+            info: XMLElementNodeInfo(name: name),
             attributes: attributes,
             content: .simple(.string(string))
         )
     }
     
-    static func data(key: String, data: Data, attributes: [String: String] = [:]) -> XMLElementNode {
+    public static func data(name: String, data: Data, attributes: [String: String] = [:]) -> XMLElementNode {
         return XMLElementNode(
-            key: key,
+            info: XMLElementNodeInfo(name: name),
             attributes: attributes,
             content: .simple(.data(data))
         )
     }
     
-    static func complex(key: String, elements: [XMLElementNode], attributes: [String: String] = [:]) -> XMLElementNode {
+    public static func complex(name: String, elements: [XMLElementNode], attributes: [String: String] = [:]) -> XMLElementNode {
         return XMLElementNode(
-            key: key,
+            info: XMLElementNodeInfo(name: name),
             attributes: attributes,
             content: .complex(XMLComplexContent(elements: elements))
         )
     }
     
-    static func mixed(key: String, items: [XMLMixedContentItem], attributes: [String: String] = [:]) -> XMLElementNode {
+    public static func mixed(name: String, items: [XMLMixedContentItem], attributes: [String: String] = [:]) -> XMLElementNode {
         return XMLElementNode(
-            key: key,
+            info: XMLElementNodeInfo(name: name),
             attributes: attributes,
             content: .mixed(XMLMixedContent(items: items))
         )
     }
     
-    mutating func append(string: String) {
+    public mutating func append(string: String) {
         self.content.append(string: string)
     }
     
-    mutating func append(data: Data) {
+    public mutating func append(data: Data) {
         self.content.append(data: data)
     }
     
-    mutating func append(element: XMLElementNode) {
+    public mutating func append(element: XMLElementNode) {
         self.content.append(element: element)
+    }
+    
+    public func accept<T: XMLElementVisitor>(visitor: T) throws {
+        let info = self.info
+        let kind = self.kind
+        let attributes = self.attributes
+        switch self.content {
+        case .empty(_):
+            try visitor.visit(start: kind, info: info, attributes: attributes)
+            // intentionally left blank
+            try visitor.visit(end: kind, info: info)
+        case .simple(let content):
+            try visitor.visit(start: kind, info: info, attributes: attributes)
+            switch content {
+            case .string(let string):
+                try visitor.visit(string: string)
+            case .data(let data):
+                try visitor.visit(data: data)
+            }
+            try visitor.visit(end: kind, info: info)
+        case .complex(let content):
+            try visitor.visit(start: kind, info: info, attributes: attributes)
+            for element in content.elements {
+                try element.accept(visitor: visitor)
+            }
+            try visitor.visit(end: kind, info: info)
+        case .mixed(let content):
+            try visitor.visit(start: kind, info: info, attributes: attributes)
+            for item in content.items {
+                switch item {
+                case .string(let string):
+                    try visitor.visit(string: string)
+                case .data(let data):
+                    try visitor.visit(data: data)
+                case .element(let element):
+                    try element.accept(visitor: visitor)
+                }
+            }
+            try visitor.visit(end: kind, info: info)
+        }
     }
 }

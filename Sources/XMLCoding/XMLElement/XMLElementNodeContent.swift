@@ -25,41 +25,41 @@ import Foundation
 ///     mixed -> mixed [label="string | data | element"];
 /// }
 /// ```
-enum XMLElementNodeContent: Equatable {
+public enum XMLElementNodeContent: Equatable {
     case empty(XMLEmptyContent)
     case simple(XMLSimpleContent)
     case complex(XMLComplexContent)
     case mixed(XMLMixedContent)
     
-    var isEmpty: Bool {
+    public var isEmpty: Bool {
         guard case .empty(_) = self else {
             return false
         }
         return true
     }
     
-    var isSimple: Bool {
+    public var isSimple: Bool {
         guard case .simple(_) = self else {
             return false
         }
         return true
     }
     
-    var isComplex: Bool {
+    public var isComplex: Bool {
         guard case .complex(_) = self else {
             return false
         }
         return true
     }
     
-    var isMixed: Bool {
+    public var isMixed: Bool {
         guard case .mixed(_) = self else {
             return false
         }
         return true
     }
     
-    mutating func append(string: String) {
+    public mutating func append(string: String) {
         switch self {
         case .empty(_):
             self = .simple(.string(string))
@@ -82,7 +82,7 @@ enum XMLElementNodeContent: Equatable {
         }
     }
     
-    mutating func append(data: Data) {
+    public mutating func append(data: Data) {
         switch self {
         case .empty(_):
             self = .simple(.data(data))
@@ -105,7 +105,7 @@ enum XMLElementNodeContent: Equatable {
         }
     }
     
-    mutating func append(element: XMLElementNode) {
+    public mutating func append(element: XMLElementNode) {
         switch self {
         case .empty(_):
             self = .complex(XMLComplexContent(

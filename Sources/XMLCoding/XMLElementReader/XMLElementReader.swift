@@ -39,7 +39,7 @@ extension XMLElementReader: XMLParserDelegate {
                 attributes attributeDict: [String: String] = [:]) {
         
         let element = XMLElementNode.empty(
-            key: elementName,
+            name: elementName,
             attributes: attributeDict
         )
         self.stack.append(element)

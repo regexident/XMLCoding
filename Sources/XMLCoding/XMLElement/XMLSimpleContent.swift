@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum XMLSimpleContent: Equatable {
+public enum XMLSimpleContent: Equatable {
     case string(String)
     case data(Data)
     
-    var string: String? {
+    public var string: String? {
         switch self {
         case .string(let string):
             return string
@@ -21,7 +21,7 @@ enum XMLSimpleContent: Equatable {
         }
     }
     
-    var data: Data? {
+    public var data: Data? {
         guard case let .data(data) = self else {
             return nil
         }
