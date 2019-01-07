@@ -120,6 +120,9 @@ DerivedData/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+# Ignore generated xcodeproj:
+*.xcodeproj
+
 # End of https://www.gitignore.io/api/xcode
 
 # Created by https://www.gitignore.io/api/macos
