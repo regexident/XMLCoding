@@ -11,6 +11,9 @@ let package = Package(
             name: "XMLDocument",
             targets: ["XMLDocument"]),
         .library(
+            name: "XMLFormatter",
+            targets: ["XMLFormatter"]),
+        .library(
             name: "XMLReader",
             targets: ["XMLReader"]),
         .library(
@@ -31,6 +34,9 @@ let package = Package(
             name: "XMLDocument",
             dependencies: []),
         .target(
+            name: "XMLFormatter",
+            dependencies: []),
+        .target(
             name: "XMLReader",
             dependencies: ["XMLDocument"]),
         .target(
@@ -38,10 +44,13 @@ let package = Package(
             dependencies: ["XMLDocument"]),
         .target(
             name: "XMLCoding",
-            dependencies: ["XMLDocument", "XMLReader", "XMLWriter"]),
+            dependencies: ["XMLDocument", "XMLReader", "XMLWriter", "XMLFormatter"]),
         .testTarget(
             name: "XMLDocumentTests",
             dependencies: ["XMLDocument"]),
+        .testTarget(
+            name: "XMLFormatterTests",
+            dependencies: ["XMLFormatter"]),
         .testTarget(
             name: "XMLReaderTests",
             dependencies: ["XMLReader"]),
