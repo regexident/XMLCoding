@@ -3,11 +3,42 @@ import Foundation
 import XMLDocument
 
 public class XMLWriter: NSObject {
-    fileprivate var stream: OutputStream
+    public enum Formatting {
+        case compact
+        case prettyPrinted(Indentation)
+        
+        public static let `default`: Formatting = .compact
+        
+        public enum Indentation {
+            case spaces(Int)
+            case tabs
+            
+            public static let `default`: Indentation = .spaces(4)
+        }
+    }
     
-    public init(stream: OutputStream) {
+    public let formatting: Formatting
+    
+    fileprivate var stream: OutputStream
+    fileprivate var depthLevel: Int = 0
+    fileprivate var indentations: [Int: String] = [:]
+    
+    fileprivate lazy var levelIndentation: String = {
+        guard case .prettyPrinted(let indentation) = self.formatting else {
+            return ""
+        }
+        switch indentation {
+        case .spaces(let count):
+            return String(repeating: " ", count: count)
+        case .tabs:
+            return "\t"
+        }
+    }()
+    
+    public init(stream: OutputStream, formatting: Formatting = .default) {
         self.stream = stream
         self.stream.open()
+        self.formatting = formatting
     }
     
     deinit {
@@ -15,27 +46,43 @@ public class XMLWriter: NSObject {
     }
     
     public func write(document: XMLDocumentNode) throws {
+        self.reset()
         try document.accept(visitor: self)
     }
     
     public func write(fragment: XMLElementNode) throws {
+        self.reset()
         try fragment.accept(visitor: self)
     }
     
-    internal func writeStartOfDocument(header: XMLDocumentHeader?) throws {
-        if let header = header, !header.isEmpty {
-            try self.write(raw: "<?xml")
-            if let version = header.version {
-                try self.write(raw: " version=\"\(version)\"")
-            }
-            if let encoding = header.encoding {
-                try self.write(raw: " encoding=\"\(encoding)\"")
-            }
-            if let standalone = header.standalone {
-                try self.write(raw: " standalone=\"\(standalone)\"")
-            }
-            try self.write(raw: " ?>")
+    internal func reset() {
+        self.depthLevel = 0
+    }
+    
+    internal func writeStartOfDocument(
+        header: XMLDocumentHeader?
+    ) throws {
+        guard let header = header, !header.isEmpty else {
+            return
         }
+        
+        try self.write(raw: "<?xml")
+        
+        if let version = header.version {
+            try self.write(raw: " version=\"\(version)\"")
+        }
+        
+        if let encoding = header.encoding {
+            try self.write(raw: " encoding=\"\(encoding)\"")
+        }
+        
+        if let standalone = header.standalone {
+            try self.write(raw: " standalone=\"\(standalone)\"")
+        }
+        
+        try self.write(raw: " ?>")
+        
+        try self.writeNewline()
     }
     
     internal func writeEndOfDocument() throws {
@@ -44,54 +91,88 @@ public class XMLWriter: NSObject {
     
     internal func write(
         start info: XMLElementNodeInfo,
-        attributes: [String: String]? = nil
+        attributes: [String: String]? = nil,
+        collapsed: Bool = false
     ) throws {
-        try self.write(raw: "<")
+        try self.write(indentedRaw: "<")
+        
         try self.write(
             name: info.name,
             namespaceURI: info.namespaceURI,
             qualifiedName: info.qualifiedName
         )
+        
         if let attributes = attributes {
             try self.write(attributes: attributes)
         }
+        
         try self.write(raw: ">")
+        
+        if !collapsed {
+            try self.writeNewline()
+        }
+        
+        self.depthLevel += 1
     }
     
-    internal func write(end info: XMLElementNodeInfo) throws {
-        try self.write(raw: "</")
+    internal func write(
+        end info: XMLElementNodeInfo,
+        collapsed: Bool = false
+    ) throws {
+        self.depthLevel -= 1
+        
+        if collapsed {
+            try self.write(raw: "</")
+        } else {
+            try self.write(indentedRaw: "</")
+        }
+        
         try self.write(
             name: info.name,
             namespaceURI: info.namespaceURI,
             qualifiedName: info.qualifiedName
         )
+        
         try self.write(raw: ">")
+        
+        try self.writeNewline()
     }
 
     internal func write(
         empty info: XMLElementNodeInfo,
         attributes: [String: String]? = nil
     ) throws {
-        try self.write(raw: "<")
+        try self.write(indentedRaw: "<")
+        
         try self.write(
             name: info.name,
             namespaceURI: info.namespaceURI,
             qualifiedName: info.qualifiedName
         )
+        
         if let attributes = attributes {
             try self.write(attributes: attributes)
         }
+        
         try self.write(raw: "/>")
+        
+        try self.writeNewline()
     }
     
-    internal func write(comment: String) throws {
+    internal func write(
+        comment: String
+    ) throws {
         let escapedComment = self.escaped(comment: comment)
         
         // FIXME: Check for forbidden "--" in `escapedComment`.
         
-        try self.write(raw: "<!-- ")
+        try self.write(indentedRaw: "<!-- ")
+        
         try self.write(raw: escapedComment)
+        
         try self.write(raw: " -->")
+        
+        try self.writeNewline()
     }
     
     internal func write(whitespace whitespaceString: String) throws {
@@ -100,27 +181,75 @@ public class XMLWriter: NSObject {
         try self.write(raw: whitespaceString)
     }
     
-    internal func write(string: String) throws {
+    internal func write(
+        string: String,
+        collapsed: Bool = false
+    ) throws {
         let escapedString = self.escaped(string: string)
-        try self.write(raw: escapedString)
+        
+        if collapsed {
+            try self.write(raw: escapedString)
+        } else {
+            try self.write(indentedRaw: escapedString)
+            try self.writeNewline()
+        }
     }
     
-    internal func write(data: Data) throws {
+    internal func write(
+        data: Data,
+        collapsed: Bool = false
+    ) throws {
         let string = String(data: data, encoding: .utf8)!
         
         // FIXME: Check for forbidden "]]>" in `string`.
         
-        try self.write(raw: "<![CDATA[\(string)]]>")
+        let cdataBlock = "<![CDATA[\(string)]]>"
+        
+        if collapsed {
+            try self.write(raw: cdataBlock)
+        } else {
+            try self.write(indentedRaw: cdataBlock)
+            try self.writeNewline()
+        }
     }
     
-    internal func write(processingInstruction: XMLProcessingInstruction) throws {
+    internal func write(
+        processingInstruction: XMLProcessingInstruction
+    ) throws {
         try self.write(raw: "<?")
+        
         try self.write(raw: processingInstruction.target)
+        
         try self.write(raw: " ")
+        
         if let value = processingInstruction.value {
             try self.write(raw: value)
         }
+        
         try self.write(raw: "?>")
+        
+        try self.writeNewline()
+    }
+    
+    fileprivate func writeNewline() throws {
+        guard case .prettyPrinted(_) = self.formatting else {
+            return
+        }
+        try self.write(raw: "\n")
+    }
+    
+    fileprivate func write(
+        indentedRaw string: String
+    ) throws {
+        var indentedString = self.indentation(for: self.depthLevel)
+        
+        if indentedString.isEmpty {
+            indentedString = string
+        } else {
+            indentedString += string
+        }
+        
+        try self.write(raw: indentedString)
     }
     
     fileprivate func write(raw string: String) throws {
@@ -137,7 +266,11 @@ public class XMLWriter: NSObject {
         }
     }
     
-    fileprivate func write(name: String, namespaceURI: String? = nil, qualifiedName: String? = nil) throws {
+    fileprivate func write(
+        name: String,
+        namespaceURI: String? = nil,
+        qualifiedName: String? = nil
+    ) throws {
         try self.write(raw: name)
     }
     
@@ -177,5 +310,23 @@ public class XMLWriter: NSObject {
             ("<", "&lt;"),
             (">", "&gt;"),
         ])
+    }
+    
+    fileprivate func indentation(for level: Int) -> String {
+//        assert(level >= 0)
+        
+        guard level > 0 else {
+            return ""
+        }
+        
+        if let indentation = self.indentations[level] {
+            return indentation
+        }
+        
+        let lesserIndentation = self.indentation(for: level - 1)
+        let indentation = lesserIndentation + self.levelIndentation
+        self.indentations[level] = indentation
+        
+        return indentation
     }
 }

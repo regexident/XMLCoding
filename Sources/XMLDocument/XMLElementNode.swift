@@ -82,16 +82,9 @@ extension XMLElementNode: XMLVisitable {
         let attributes = self.attributes
         switch self.content {
         case .empty(_):
-            try visitor.visit(element: info, attributes: attributes)
+            try visitor.visit(element: info, content: nil, attributes: attributes)
         case .simple(let content):
-            try visitor.enter(element: info, attributes: attributes)
-            switch content {
-            case .string(let string):
-                try visitor.visit(string: string)
-            case .data(let data):
-                try visitor.visit(data: data)
-            }
-            try visitor.exit(element: info)
+            try visitor.visit(element: info, content: content, attributes: attributes)
         case .complex(let content):
             try visitor.enter(element: info, attributes: attributes)
             for element in content.elements {

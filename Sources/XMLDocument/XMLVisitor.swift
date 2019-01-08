@@ -7,7 +7,7 @@ public protocol XMLVisitor {
     func enter(element: XMLElementNodeInfo, attributes: [String: String]?) throws
     func exit(element: XMLElementNodeInfo) throws
     
-    func visit(element: XMLElementNodeInfo, attributes: [String: String]?) throws
+    func visit(element: XMLElementNodeInfo, content: XMLSimpleContent?, attributes: [String: String]?) throws
     
     func visit(string: String) throws
     func visit(data: Data) throws
