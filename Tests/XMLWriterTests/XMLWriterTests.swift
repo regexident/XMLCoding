@@ -600,4 +600,36 @@ class XMLWriterTests: XCTestCase {
             """
         )
     }
+    
+    static var allTests = [
+        ("test_writeStartOfDocument_no_header", test_writeStartOfDocument_no_header),
+        ("test_writeStartOfDocument_header_none", test_writeStartOfDocument_header_none),
+        ("test_writeStartOfDocument_header_version", test_writeStartOfDocument_header_version),
+        ("test_writeStartOfDocument_header_encoding", test_writeStartOfDocument_header_encoding),
+        ("test_writeStartOfDocument_header_standalone", test_writeStartOfDocument_header_standalone),
+        ("test_writeStartOfDocument_header_all", test_writeStartOfDocument_header_all),
+        ("test_writeEndOfDocument", test_writeEndOfDocument),
+        ("test_write_processingInstruction", test_write_processingInstruction),
+        ("test_write_comment", test_write_comment),
+        ("test_write_whitespace", test_write_whitespace),
+        ("test_write_string", test_write_string),
+        ("test_write_data", test_write_data),
+        ("test_write_element_start", test_write_element_start),
+        ("test_write_element_start_with_attributes", test_write_element_start_with_attributes),
+        ("test_write_element_end", test_write_element_end),
+        ("test_write_element_empty", test_write_element_empty),
+        ("test_write_element_empty_with_attributes", test_write_element_empty_with_attributes),
+        ("test_write_fragment_empty", test_write_fragment_empty),
+        ("test_write_fragment_simple_string", test_write_fragment_simple_string),
+        ("test_write_fragment_simple_data", test_write_fragment_simple_data),
+        ("test_write_fragment_complex", test_write_fragment_complex),
+        ("test_write_fragment_mixed", test_write_fragment_mixed),
+        ("test_write_fragment_deep", test_write_fragment_deep),
+        ("test_write_document_exceeding_stream_memory", test_write_document_exceeding_stream_memory),
+        ("test_write_document_empty", test_write_document_empty),
+        ("test_write_document_empty_with_header", test_write_document_empty_with_header),
+        ("test_write_document_deep", test_write_document_deep),
+        ("test_write_document_deep_with_header", test_write_document_deep_with_header),
+        ("test_write_tab_indentation", test_write_tab_indentation),
+    ]
 }

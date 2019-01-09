@@ -67,4 +67,10 @@ class XMLURLFormatterTests: XCTestCase {
             XCTAssertThrowsError(try formatter.value(from: string))
         }
     }
+    
+    static var allTests = [
+        ("test_string_from_value", test_string_from_value),
+        ("test_value_from_string", test_value_from_string),
+        ("test_value_from_string_invalid", test_value_from_string_invalid),
+    ]
 }

@@ -51,4 +51,11 @@ class XMLMixedContentItemTests: XCTestCase {
         XCTAssertNil(subject.string)
         XCTAssertNil(subject.data)
     }
+    
+    static var allTests = [
+        ("testStringItem", testStringItem),
+        ("testStringItem", testStringItem),
+        ("testDataItem", testDataItem),
+        ("testElementItem", testElementItem),
+    ]
 }

@@ -101,4 +101,16 @@ extension XMLElementNodeTests {
         
         XCTAssertEqual(subject.content, content)
     }
+    
+    static var allTests = [
+        ("test_init", test_init),
+        ("test_empty", test_empty),
+        ("test_string", test_string),
+        ("test_data", test_data),
+        ("test_complex", test_complex),
+        ("test_mixed", test_mixed),
+        ("test_append_with_string", test_append_with_string),
+        ("test_append_with_data", test_append_with_data),
+        ("test_append_with_element", test_append_with_element),
+    ]
 }

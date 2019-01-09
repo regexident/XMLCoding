@@ -22,4 +22,9 @@ class XMLSimpleContentTests: XCTestCase {
         
         XCTAssertNil(subject.string, string)
     }
+    
+    static var allTests = [
+        ("testStringItem", testStringItem),
+        ("testDataItem", testDataItem),
+    ]
 }

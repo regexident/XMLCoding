@@ -59,4 +59,10 @@ class XMLInt32FormatterTests: XCTestCase {
             XCTAssertThrowsError(try formatter.value(from: string))
         }
     }
+    
+    static var allTests = [
+        ("test_string_from_value", test_string_from_value),
+        ("test_value_from_string_valid", test_value_from_string_valid),
+        ("test_value_from_string_invalid", test_value_from_string_invalid),
+    ]
 }

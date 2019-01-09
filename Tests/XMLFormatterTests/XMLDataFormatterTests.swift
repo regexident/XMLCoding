@@ -123,4 +123,11 @@ class XMLDataFormatterTests: XCTestCase {
             XCTAssertThrowsError(try self.withBase64Formatter(string, action))
         }
     }
+    
+    static var allTests = [
+        ("test_string_from_value", test_string_from_value),
+        ("test_string_from_value_invalid", test_string_from_value_invalid),
+        ("test_value_from_string", test_value_from_string),
+        ("test_value_from_string_invalid", test_value_from_string_invalid),
+    ]
 }
