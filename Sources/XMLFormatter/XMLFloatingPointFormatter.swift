@@ -21,6 +21,8 @@ public struct XMLFloatingPointFormatter<T: FixedWidthFloatingPoint> {
     public enum Error: Swift.Error {
         case invalidValue
     }
+    
+    public init() {}
 }
 
 extension XMLFloatingPointFormatter: XMLFormatter {

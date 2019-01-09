@@ -6,6 +6,8 @@ public struct XMLURLFormatter {
     public enum Error: Swift.Error {
         case invalidValue
     }
+    
+    public init() {}
 }
 
 extension XMLURLFormatter: XMLFormatter {

@@ -6,6 +6,8 @@ public struct XMLBoolFormatter {
     public enum Error: Swift.Error {
         case invalidValue
     }
+    
+    public init() {}
 }
 
 extension XMLBoolFormatter: XMLFormatter {

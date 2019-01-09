@@ -7,6 +7,8 @@ public struct XMLDecimalFormatter {
         case invalidValue
         case infinityUnsupported
     }
+    
+    public init() {}
 }
 
 extension XMLDecimalFormatter: XMLFormatter {

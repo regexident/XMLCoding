@@ -6,6 +6,8 @@ public struct XMLIntegerFormatter<T: FixedWidthInteger> {
     public enum Error: Swift.Error {
         case invalidValue
     }
+    
+    public init() {}
 }
 
 extension XMLIntegerFormatter: XMLFormatter {
