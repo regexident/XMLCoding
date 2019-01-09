@@ -1,6 +1,6 @@
 import Foundation
 
-protocol XMLFormatter {
+public protocol XMLFormatter {
     associatedtype Value
     
     func value(from string: String) throws -> Value
