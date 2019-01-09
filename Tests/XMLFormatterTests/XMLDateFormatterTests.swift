@@ -54,7 +54,7 @@ class XMLDateFormatterTests: XCTestCase {
                 )
             ),
             (
-                Date(timeIntervalSince1970: 123456789.0),
+                Date(timeIntervalSince1970: 123_456_789.0),
                 (
                     secondsSince1970: "123456789.0",
                     millisecondsSince1970: "123456789000.0",
@@ -65,7 +65,7 @@ class XMLDateFormatterTests: XCTestCase {
         ]
         
         let action: TestAction = { value, formatter in
-            return try formatter.string(from: value)
+            try formatter.string(from: value)
         }
         
         for (value, expected) in examples {
@@ -124,12 +124,12 @@ class XMLDateFormatterTests: XCTestCase {
                     iso8601: "1973-11-29T21:33:09Z",
                     custom: "11-29-1973 21:33:09"
                 ),
-                Date(timeIntervalSince1970: 123456789.0)
+                Date(timeIntervalSince1970: 123_456_789.0)
             ),
         ]
         
         let action: TestAction = { string, formatter in
-            return try formatter.value(from: string)
+            try formatter.value(from: string)
         }
         
         for (strings, expected) in examples {
@@ -157,7 +157,7 @@ class XMLDateFormatterTests: XCTestCase {
         
         let strings = [
             "",
-            "lorem ipsum"
+            "lorem ipsum",
         ]
         
         let examples: Examples = (
@@ -168,7 +168,7 @@ class XMLDateFormatterTests: XCTestCase {
         )
         
         let action: TestAction = { string, formatter in
-            return try formatter.value(from: string)
+            try formatter.value(from: string)
         }
         
         for string in examples.secondsSince1970 {

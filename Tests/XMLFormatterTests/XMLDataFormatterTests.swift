@@ -33,7 +33,7 @@ class XMLDataFormatterTests: XCTestCase {
         ]
         
         let action: TestAction = { value, formatter in
-            return try formatter.string(from: value)
+            try formatter.string(from: value)
         }
         
         for (value, expected) in examples {
@@ -53,13 +53,13 @@ class XMLDataFormatterTests: XCTestCase {
         
         let examples: Examples = (
             raw: [
-                Data([0xde, 0xad, 0xbe, 0xef])
+                Data([0xde, 0xad, 0xbe, 0xef]),
             ],
             base64: []
         )
         
         let action: TestAction = { value, formatter in
-            return try formatter.string(from: value)
+            try formatter.string(from: value)
         }
         
         for value in examples.raw {
@@ -84,9 +84,9 @@ class XMLDataFormatterTests: XCTestCase {
                 Data([0x64, 0x65, 0x61, 0x64, 0x62, 0x65, 0x65, 0x66])
             ),
         ]
-       
+        
         let action: TestAction = { string, formatter in
-            return try formatter.value(from: string)
+            try formatter.value(from: string)
         }
         
         for (string, expected) in examples {
@@ -107,12 +107,12 @@ class XMLDataFormatterTests: XCTestCase {
         let examples: Examples = (
             raw: [],
             base64: [
-                "lorem ipsum"
+                "lorem ipsum",
             ]
         )
         
         let action: TestAction = { string, formatter in
-            return try formatter.value(from: string)
+            try formatter.value(from: string)
         }
         
         for string in examples.raw {

@@ -37,7 +37,7 @@ extension XMLDataFormatter: XMLFormatter {
             return try self.rawString(from: value)
         case .base64:
             return try self.base64String(from: value)
-        }        
+        }
     }
 }
 
@@ -64,7 +64,7 @@ extension XMLDataFormatter {
         return value
     }
     
-    fileprivate func value(fromBase64String string: String) throws -> Value {        
+    fileprivate func value(fromBase64String string: String) throws -> Value {
         guard let value = Data(base64Encoded: string) else {
             throw Error.invalidValue
         }

@@ -29,8 +29,8 @@ class XMLFloatFormatterTests: XCTestCase {
     
     func test_value_from_string_valid() throws {
         let examples: [(String, Value)] = [
-            ("-3E2", -3E2),
-            ("4268.22752E11", 4268.22752E11),
+            ("-3E2", -3e2),
+            ("4268.22752E11", 4268.22752e11),
             ("+24.3e-3", +24.3e-3),
             ("12", 12.0),
             ("+3.5", +3.5),
@@ -40,9 +40,9 @@ class XMLFloatFormatterTests: XCTestCase {
             ("-0", -0.0),
             ("NaN", .nan),
         ]
-
+        
         let formatter = Formatter()
-
+        
         for (string, expected) in examples {
             let value = try formatter.value(from: string)
             
@@ -53,7 +53,7 @@ class XMLFloatFormatterTests: XCTestCase {
             }
         }
     }
-
+    
     func test_value_from_string_invalid() throws {
         let examples: [String] = [
             "-3E2.4",
@@ -63,9 +63,9 @@ class XMLFloatFormatterTests: XCTestCase {
             "      ",
             "",
         ]
-
+        
         let formatter = Formatter()
-
+        
         for string in examples {
             XCTAssertThrowsError(try formatter.value(from: string))
         }

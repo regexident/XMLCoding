@@ -4,7 +4,7 @@ public protocol FixedWidthFloatingPoint: Comparable, ExpressibleByFloatLiteral {
     var isNaN: Bool { get }
     var isInfinite: Bool { get }
     
-    init?<S>(_ text: S) where S : StringProtocol
+    init?<S>(_ text: S) where S: StringProtocol
 }
 
 extension Float: FixedWidthFloatingPoint {

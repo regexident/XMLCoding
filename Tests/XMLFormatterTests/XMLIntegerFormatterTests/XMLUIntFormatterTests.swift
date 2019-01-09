@@ -24,18 +24,18 @@ class XMLUIntFormatterTests: XCTestCase {
         let examples: [(String, Value)] = [
             ("1", 1),
             ("0", 0),
-            ("12678967543233", 12678967543233),
-            ("+100000", 100000),
+            ("12678967543233", 12_678_967_543_233),
+            ("+100000", 100_000),
         ]
-
+        
         let formatter = Formatter()
-
+        
         for (string, expected) in examples {
             let value = try formatter.value(from: string)
             XCTAssertEqual(value, expected)
         }
     }
-
+    
     func test_value_from_string_invalid() throws {
         let examples: [String] = [
             "98765432109876543210",
@@ -45,9 +45,9 @@ class XMLUIntFormatterTests: XCTestCase {
             "      ",
             "",
         ]
-
+        
         let formatter = Formatter()
-
+        
         for string in examples {
             XCTAssertThrowsError(try formatter.value(from: string))
         }

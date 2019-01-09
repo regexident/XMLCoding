@@ -7,7 +7,7 @@ class XMLReaderTests: XCTestCase {
         let reader = XMLReader()
         
         // Invalid UTF-8 byte sequence:
-        let xmlData = Data(bytes: [0x80, 0xBF])
+        let xmlData = Data(bytes: [0x80, 0xbf])
         
         XCTAssertThrowsError(
             try {
@@ -21,11 +21,11 @@ class XMLReaderTests: XCTestCase {
         
         // Invalid XML string (invalid use of meta-chararacter `&`):
         let xmlString =
-"""
-<container>
-lorem ipsum & dolor sit amet
-</container>
-"""
+            """
+            <container>
+            lorem ipsum & dolor sit amet
+            </container>
+            """
         let xmlData = xmlString.data(using: .utf8)!
         
         XCTAssertThrowsError(
@@ -39,11 +39,11 @@ lorem ipsum & dolor sit amet
         let reader = XMLReader()
         
         let xmlString =
-"""
-<container attribute="ATTRIBUTE">
-    <!-- EMPTY -->
-</container>
-"""
+            """
+            <container attribute="ATTRIBUTE">
+                <!-- EMPTY -->
+            </container>
+            """
         let xmlData = xmlString.data(using: .utf8)!
         
         let document: XMLDocumentNode = try reader.read(from: xmlData)
@@ -58,11 +58,11 @@ lorem ipsum & dolor sit amet
         let reader = XMLReader()
         
         let xmlString =
-"""
-<container attribute="ATTRIBUTE">
-    STRING
-</container>
-"""
+            """
+            <container attribute="ATTRIBUTE">
+                STRING
+            </container>
+            """
         let xmlData = xmlString.data(using: .utf8)!
         
         let document: XMLDocumentNode = try reader.read(from: xmlData)
@@ -77,11 +77,11 @@ lorem ipsum & dolor sit amet
         let reader = XMLReader()
         
         let xmlString =
-        """
-<container attribute="ATTRIBUTE">
-    <![CDATA[DATA]]>
-</container>
-"""
+            """
+            <container attribute="ATTRIBUTE">
+                <![CDATA[DATA]]>
+            </container>
+            """
         let xmlData = xmlString.data(using: .utf8)!
         
         let document: XMLDocumentNode = try reader.read(from: xmlData)
@@ -96,12 +96,12 @@ lorem ipsum & dolor sit amet
         let reader = XMLReader()
         
         let xmlString =
-        """
-<container attribute="ATTRIBUTE">
-    <foo />
-    <bar />
-</container>
-"""
+            """
+            <container attribute="ATTRIBUTE">
+                <foo />
+                <bar />
+            </container>
+            """
         let xmlData = xmlString.data(using: .utf8)!
         
         let document: XMLDocumentNode = try reader.read(from: xmlData)
@@ -109,23 +109,25 @@ lorem ipsum & dolor sit amet
         
         XCTAssertEqual(element.info.name, "container")
         XCTAssertEqual(element.attributes, ["attribute": "ATTRIBUTE"])
-        XCTAssertEqual(element.content.elements, [
-            XMLElementNode.empty(name: "foo"),
-            XMLElementNode.empty(name: "bar"),
-        ])
+        XCTAssertEqual(
+            element.content.elements, [
+                XMLElementNode.empty(name: "foo"),
+                XMLElementNode.empty(name: "bar"),
+            ]
+        )
     }
     
     func test_read_mixed() throws {
         let reader = XMLReader()
         
         let xmlString =
-        """
-<container attribute="ATTRIBUTE">
-    foo
-    <bar />
-    <![CDATA[DATA]]>
-</container>
-"""
+            """
+            <container attribute="ATTRIBUTE">
+                foo
+                <bar />
+                <![CDATA[DATA]]>
+            </container>
+            """
         let xmlData = xmlString.data(using: .utf8)!
         
         let document: XMLDocumentNode = try reader.read(from: xmlData)
@@ -133,26 +135,28 @@ lorem ipsum & dolor sit amet
         
         XCTAssertEqual(element.info.name, "container")
         XCTAssertEqual(element.attributes, ["attribute": "ATTRIBUTE"])
-        XCTAssertEqual(element.content.items, [
-            .string("foo"),
-            .element(.empty(name: "bar")),
-            .data("DATA".data(using: .utf8)!),
-        ])
+        XCTAssertEqual(
+            element.content.items, [
+                .string("foo"),
+                .element(.empty(name: "bar")),
+                .data("DATA".data(using: .utf8)!),
+            ]
+        )
     }
     
     func test_read_deep() throws {
         let reader = XMLReader()
         
         let xmlString =
-        """
-<container attribute="ATTRIBUTE">
-    foo
-    <bar>
-        <baz />
-    </bar>
-    <![CDATA[DATA]]>
-</container>
-"""
+            """
+            <container attribute="ATTRIBUTE">
+                foo
+                <bar>
+                    <baz />
+                </bar>
+                <![CDATA[DATA]]>
+            </container>
+            """
         let xmlData = xmlString.data(using: .utf8)!
         
         let document: XMLDocumentNode = try reader.read(from: xmlData)
@@ -160,12 +164,18 @@ lorem ipsum & dolor sit amet
         
         XCTAssertEqual(element.info.name, "container")
         XCTAssertEqual(element.attributes, ["attribute": "ATTRIBUTE"])
-        XCTAssertEqual(element.content.items, [
-            .string("foo"),
-            .element(.complex(name: "bar", elements: [
-                XMLElementNode.empty(name: "baz"),
-            ])),
-            .data("DATA".data(using: .utf8)!),
-        ])
+        XCTAssertEqual(
+            element.content.items, [
+                .string("foo"),
+                .element(
+                    .complex(
+                        name: "bar", elements: [
+                            XMLElementNode.empty(name: "baz"),
+                        ]
+                    )
+                ),
+                .data("DATA".data(using: .utf8)!),
+            ]
+        )
     }
 }

@@ -1,5 +1,3 @@
 import Foundation
 
-public struct XMLCoding {
-    
-}
+public struct XMLCoding {}

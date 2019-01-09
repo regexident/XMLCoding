@@ -19,7 +19,7 @@ class XMLDecimalFormatterTests: XCTestCase {
             (-12.3, "-12.3"),
             (0.0, "0"),
             (-0.0, "0"),
-//            (.infinity, "INF"),
+            //            (.infinity, "INF"),
 //            (-.infinity, "-INF"),
             (.nan, "NaN"),
         ]
@@ -34,19 +34,19 @@ class XMLDecimalFormatterTests: XCTestCase {
     
     func test_value_from_string_valid() throws {
         let examples: [(String, Value)] = [
-            ("-3E2", -3E2),
-            ("4268.22752E11", 4268.22752E11),
+            ("-3E2", -3e2),
+            ("4268.22752E11", 4268.22752e11),
             ("12", 12.0),
             ("+3.5", +3.5),
-//            ("INF", .infinity),
+            //            ("INF", .infinity),
 //            ("-INF", -.infinity),
             ("0", 0.0),
             ("-0", -0.0),
             ("NaN", .nan),
         ]
-
+        
         let formatter = Formatter()
-
+        
         for (string, expected) in examples {
             let value = try formatter.value(from: string)
             
@@ -57,7 +57,7 @@ class XMLDecimalFormatterTests: XCTestCase {
             }
         }
     }
-
+    
     func test_value_from_string_invalid() throws {
         let examples: [String] = [
             "INF",
@@ -66,9 +66,9 @@ class XMLDecimalFormatterTests: XCTestCase {
             "      ",
             "",
         ]
-
+        
         let formatter = Formatter()
-
+        
         for string in examples {
             XCTAssertThrowsError(try formatter.value(from: string))
         }

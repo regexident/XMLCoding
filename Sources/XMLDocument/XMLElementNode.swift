@@ -2,8 +2,8 @@ import Foundation
 
 public struct XMLElementNodeInfo: Equatable {
     public var name: String
-    public var namespaceURI: String? = nil
-    public var qualifiedName: String? = nil
+    public var namespaceURI: String?
+    public var qualifiedName: String?
     
     init(
         name: String,
@@ -81,7 +81,7 @@ extension XMLElementNode: XMLVisitable {
         let info = self.info
         let attributes = self.attributes
         switch self.content {
-        case .empty(_):
+        case .empty:
             try visitor.visit(element: info, content: nil, attributes: attributes)
         case .simple(let content):
             try visitor.visit(element: info, content: content, attributes: attributes)

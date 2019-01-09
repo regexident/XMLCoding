@@ -16,6 +16,7 @@ class XMLElementNodeTests: XCTestCase {
 }
 
 // MARK: - Initialize elements
+
 extension XMLElementNodeTests {
     func test_init() {
         let subject = self.element()
@@ -57,6 +58,7 @@ extension XMLElementNodeTests {
 }
 
 // MARK: - Append to elements
+
 extension XMLElementNodeTests {
     // MARK: - Append to element
     

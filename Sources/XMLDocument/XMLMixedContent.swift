@@ -10,21 +10,21 @@ public enum XMLMixedContentItem: Equatable {
     case element(XMLElementNode)
     
     public var string: String? {
-        guard case let .string(string) = self else {
+        guard case .string(let string) = self else {
             return nil
         }
         return string
     }
     
     public var data: Data? {
-        guard case let .data(data) = self else {
+        guard case .data(let data) = self else {
             return nil
         }
         return data
     }
     
     public var element: XMLElementNode? {
-        guard case let .element(element) = self else {
+        guard case .element(let element) = self else {
             return nil
         }
         return element

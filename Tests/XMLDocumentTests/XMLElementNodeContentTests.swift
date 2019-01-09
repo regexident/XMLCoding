@@ -49,19 +49,27 @@ class XMLElementNodeContentTests: XCTestCase {
     }
     
     func complexContent() -> XMLElementNodeContent {
-        return .complex(XMLComplexContent(elements: [
-            self.emptyElement(),
-            self.stringElement(),
-            self.dataElement(),
-        ]))
+        return .complex(
+            XMLComplexContent(
+                elements: [
+                    self.emptyElement(),
+                    self.stringElement(),
+                    self.dataElement(),
+                ]
+            )
+        )
     }
     
     func mixedContent() -> XMLElementNodeContent {
-        return .mixed(XMLMixedContent(items: [
-            .string(self.string),
-            .data(self.data),
-            .element(self.emptyElement()),
-        ]))
+        return .mixed(
+            XMLMixedContent(
+                items: [
+                    .string(self.string),
+                    .data(self.data),
+                    .element(self.emptyElement()),
+                ]
+            )
+        )
     }
     
     func element(with content: XMLElementNodeContent) -> XMLElementNode {
@@ -74,6 +82,7 @@ class XMLElementNodeContentTests: XCTestCase {
 }
 
 // MARK: - Append to content
+
 extension XMLElementNodeContentTests {
     // MARK: - Append to empty content
     
@@ -149,6 +158,7 @@ extension XMLElementNodeContentTests {
 }
 
 // MARK: - Append to content
+
 extension XMLElementNodeContentTests {
     // MARK: - Append to empty content
     
@@ -195,23 +205,23 @@ extension XMLElementNodeContentTests {
         
         XCTAssertEqual(subject.elements, elements)
     }
-
+    
     // MARK: - Append to string content
     
     func test_append_string_with_string() {
         let string = self.string
-
+        
         var subject: XMLElementNodeContent = self.stringContent()
         
         XCTAssertTrue(subject.isSimple)
         
         subject.append(string: string)
-
+        
         let items = [
             XMLMixedContentItem(simple: self.stringContent()),
             .string(string),
         ]
-
+        
         XCTAssertTrue(subject.isMixed)
         
         XCTAssertEqual(subject.items, items)
@@ -219,7 +229,7 @@ extension XMLElementNodeContentTests {
     
     func test_append_string_with_data() {
         let data = self.data
-
+        
         var subject: XMLElementNodeContent = self.stringContent()
         
         XCTAssertTrue(subject.isSimple)
@@ -230,15 +240,15 @@ extension XMLElementNodeContentTests {
             XMLMixedContentItem(simple: self.stringContent()),
             .data(data),
         ]
-
+        
         XCTAssertTrue(subject.isMixed)
         
         XCTAssertEqual(subject.items, items)
     }
-
+    
     func test_append_string_with_element() {
         let element = self.emptyElement()
-
+        
         var subject: XMLElementNodeContent = self.stringContent()
         
         XCTAssertTrue(subject.isSimple)
@@ -249,7 +259,7 @@ extension XMLElementNodeContentTests {
             XMLMixedContentItem(simple: self.stringContent()),
             .element(element),
         ]
-
+        
         XCTAssertTrue(subject.isMixed)
         
         XCTAssertEqual(subject.items, items)
@@ -318,7 +328,7 @@ extension XMLElementNodeContentTests {
     
     func test_append_complex_with_string() {
         let string = self.string
-
+        
         var subject: XMLElementNodeContent = self.complexContent()
         
         XCTAssertTrue(subject.isComplex)
@@ -332,10 +342,10 @@ extension XMLElementNodeContentTests {
         
         XCTAssertEqual(subject.items, items)
     }
-
+    
     func test_append_complex_with_data() {
         let data = self.data
-
+        
         var subject: XMLElementNodeContent = self.complexContent()
         
         XCTAssertTrue(subject.isComplex)
@@ -349,19 +359,19 @@ extension XMLElementNodeContentTests {
         
         XCTAssertEqual(subject.items, items)
     }
-
+    
     func test_append_complex_with_element() {
         let element = self.emptyElement()
-
+        
         var subject: XMLElementNodeContent = self.complexContent()
-
+        
         XCTAssertTrue(subject.isComplex)
         
         var elements = subject.elements!
         elements += [element]
-
+        
         subject.append(element: element)
-
+        
         XCTAssertTrue(subject.isComplex)
         
         XCTAssertEqual(subject.elements, elements)
@@ -388,33 +398,33 @@ extension XMLElementNodeContentTests {
     
     func test_append_mixed_with_data() {
         let data = self.data
-
+        
         var subject: XMLElementNodeContent = self.mixedContent()
-
+        
         XCTAssertTrue(subject.isMixed)
         
         var items = subject.items!
         items += [.data(data)]
-
+        
         subject.append(data: data)
-
+        
         XCTAssertTrue(subject.isMixed)
         
         XCTAssertEqual(subject.items, items)
     }
-
+    
     func test_append_mixed_with_element() {
         let element = self.emptyElement()
-
+        
         var subject: XMLElementNodeContent = self.mixedContent()
-
+        
         XCTAssertTrue(subject.isMixed)
         
         var items = subject.items!
         items += [.element(element)]
-
+        
         subject.append(element: element)
-
+        
         XCTAssertTrue(subject.isMixed)
         
         XCTAssertEqual(subject.items, items)

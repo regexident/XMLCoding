@@ -137,7 +137,7 @@ public class XMLWriter: NSObject {
         
         try self.writeNewline()
     }
-
+    
     internal func write(
         empty info: XMLElementNodeInfo,
         attributes: [String: String]? = nil
@@ -232,7 +232,7 @@ public class XMLWriter: NSObject {
     }
     
     fileprivate func writeNewline() throws {
-        guard case .prettyPrinted(_) = self.formatting else {
+        guard case .prettyPrinted = self.formatting else {
             return
         }
         try self.write(raw: "\n")
@@ -287,29 +287,35 @@ public class XMLWriter: NSObject {
     }
     
     fileprivate func escaped(attribute: String) -> String {
-        return attribute.escaped([
-            ("&", "&amp;"),
-            ("<", "&lt;"),
-            (">", "&gt;"),
-            ("'", "&apos;"),
-            ("\"", "&quot;"),
-        ])
+        return attribute.escaped(
+            [
+                ("&", "&amp;"),
+                ("<", "&lt;"),
+                (">", "&gt;"),
+                ("'", "&apos;"),
+                ("\"", "&quot;"),
+            ]
+        )
     }
     
     fileprivate func escaped(string: String) -> String {
-        return string.escaped([
-            ("&", "&amp;"),
-            ("<", "&lt;"),
-            (">", "&gt;"),
-        ])
+        return string.escaped(
+            [
+                ("&", "&amp;"),
+                ("<", "&lt;"),
+                (">", "&gt;"),
+            ]
+        )
     }
     
     fileprivate func escaped(comment: String) -> String {
-        return comment.escaped([
-            ("&", "&amp;"),
-            ("<", "&lt;"),
-            (">", "&gt;"),
-        ])
+        return comment.escaped(
+            [
+                ("&", "&amp;"),
+                ("<", "&lt;"),
+                (">", "&gt;"),
+            ]
+        )
     }
     
     fileprivate func indentation(for level: Int) -> String {

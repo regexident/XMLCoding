@@ -64,7 +64,7 @@ extension XMLDateFormatter {
         
         return "\(seconds)"
     }
-
+    
     fileprivate func millisecondsSince1970String(from value: Value) throws -> String {
         let millisecondsPerSecond = 1000.0
         
@@ -74,7 +74,7 @@ extension XMLDateFormatter {
         
         return "\(milliseconds)"
     }
-
+    
     fileprivate func iso8601String(from value: Value) throws -> String {
         if #available(macOS 10.12, iOS 10.0, watchOS 3.0, tvOS 10.0, *) {
             let formatter = XMLDateFormatter.iso8601Formatter
@@ -86,7 +86,7 @@ extension XMLDateFormatter {
             fatalError("ISO8601DateFormatter is unavailable on this platform.")
         }
     }
-
+    
     fileprivate func string(from value: Value, with formatter: DateFormatter) throws -> String {
         let string = formatter.string(from: value)
         
@@ -131,7 +131,7 @@ extension XMLDateFormatter {
         }
     }
     
-    fileprivate func value(from string: String, with formatter: DateFormatter) throws -> Value {        
+    fileprivate func value(from string: String, with formatter: DateFormatter) throws -> Value {
         guard let value = formatter.date(from: string) else {
             throw Error.invalidValue
         }

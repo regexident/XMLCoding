@@ -1,5 +1,3 @@
 import Foundation
 
-public struct XMLEmptyContent: Equatable {
-    
-}
+public struct XMLEmptyContent: Equatable {}

@@ -5,7 +5,7 @@ class XMLMixedContentTests: XCTestCase {
     func testStringItem() {
         let string = "foo"
         let items: [XMLMixedContentItem] = [
-            .string(string)
+            .string(string),
         ]
         
         let subject = XMLMixedContent(items: items)

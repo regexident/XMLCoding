@@ -24,17 +24,19 @@ extension XMLParser {
         
         let help = indentation + "^ The error occured here."
         
-        throw DecodingError.dataCorrupted(DecodingError.Context(
-            codingPath: [],
-            debugDescription: """
-            Error at line \(parser.lineNumber), column \(parser.columnNumber): \
-            \(errorDescription)
-            
-            \(line)
-            \(help)
-            """,
-            underlyingError: error
-        ))
+        throw DecodingError.dataCorrupted(
+            DecodingError.Context(
+                codingPath: [],
+                debugDescription: """
+                Error at line \(parser.lineNumber), column \(parser.columnNumber): \
+                \(errorDescription)
+                
+                \(line)
+                \(help)
+                """,
+                underlyingError: error
+            )
+        )
     }
     
     static func description(for error: NSError) -> String {
@@ -140,7 +142,7 @@ extension XMLParser {
             .uriFragmentError: "URI fragment.",
             .noDTDError: "Missing DTD.",
             .delegateAbortedParseError: "Delegate aborted parse.",
-            ]
+        ]
         
         guard let description = descriptions[errorCode] else {
             return "The parser object encountered an unknown error."

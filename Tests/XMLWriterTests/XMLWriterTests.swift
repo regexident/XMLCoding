@@ -9,7 +9,7 @@ extension OutputStream {
     
     var inMemoryString: String? {
         return self.inMemoryData.flatMap { data in
-            return String(data: data, encoding: .utf8)
+            String(data: data, encoding: .utf8)
         }
     }
 }
@@ -266,9 +266,11 @@ class XMLWriterTests: XCTestCase {
     
     func test_write_fragment_empty() throws {
         let action: TestAction = { writer in
-            try writer.write(fragment: .empty(
-                name: "foo"
-            ))
+            try writer.write(
+                fragment: .empty(
+                    name: "foo"
+                )
+            )
         }
         
         let compact = try self.withCompactWriter(action)
@@ -280,10 +282,12 @@ class XMLWriterTests: XCTestCase {
     
     func test_write_fragment_simple_string() throws {
         let action: TestAction = { writer in
-            try writer.write(fragment: .string(
-                name: "foo",
-                string: "bar"
-            ))
+            try writer.write(
+                fragment: .string(
+                    name: "foo",
+                    string: "bar"
+                )
+            )
         }
         
         let compact = try self.withCompactWriter(action)
@@ -295,10 +299,12 @@ class XMLWriterTests: XCTestCase {
     
     func test_write_fragment_simple_data() throws {
         let action: TestAction = { writer in
-            try writer.write(fragment: .data(
-                name: "foo",
-                data: "bar".data(using: .utf8)!
-            ))
+            try writer.write(
+                fragment: .data(
+                    name: "foo",
+                    data: "bar".data(using: .utf8)!
+                )
+            )
         }
         
         let compact = try self.withCompactWriter(action)
@@ -310,86 +316,97 @@ class XMLWriterTests: XCTestCase {
     
     func test_write_fragment_complex() throws {
         let action: TestAction = { writer in
-            try writer.write(fragment: .complex(
-                name: "foo",
-                elements: [
-                    .string(name: "bar", string: "baz"),
-                    .empty(name: "blee"),
-                ]
-            ))
+            try writer.write(
+                fragment: .complex(
+                    name: "foo",
+                    elements: [
+                        .string(name: "bar", string: "baz"),
+                        .empty(name: "blee"),
+                    ]
+                )
+            )
         }
         
         let compact = try self.withCompactWriter(action)
         XCTAssertEqual(compact, "<foo><bar>baz</bar><blee/></foo>")
         
         let spaceIndented = try self.withSpaceIndentedWriter(action)
-        XCTAssertEqual(spaceIndented,
-"""
-<foo>
-    <bar>baz</bar>
-    <blee/>
-</foo>
-
-"""
+        XCTAssertEqual(
+            spaceIndented,
+            """
+            <foo>
+                <bar>baz</bar>
+                <blee/>
+            </foo>
+            
+            """
         )
     }
     
     func test_write_fragment_mixed() throws {
         let action: TestAction = { writer in
-            try writer.write(fragment: .mixed(
-                name: "foo",
-                items: [
-                    .string("bar"),
-                    .element(.empty(name: "baz")),
-                    .data("blee".data(using: .utf8)!),
-                ]
-            ))
+            try writer.write(
+                fragment: .mixed(
+                    name: "foo",
+                    items: [
+                        .string("bar"),
+                        .element(.empty(name: "baz")),
+                        .data("blee".data(using: .utf8)!),
+                    ]
+                )
+            )
         }
         
         let compact = try self.withCompactWriter(action)
         XCTAssertEqual(compact, "<foo>bar<baz/><![CDATA[blee]]></foo>")
         
         let spaceIndented = try self.withSpaceIndentedWriter(action)
-        XCTAssertEqual(spaceIndented,
-"""
-<foo>
-    bar
-    <baz/>
-    <![CDATA[blee]]>
-</foo>
-
-"""
-       )
+        XCTAssertEqual(
+            spaceIndented,
+            """
+            <foo>
+                bar
+                <baz/>
+                <![CDATA[blee]]>
+            </foo>
+            
+            """
+        )
     }
     
     func test_write_fragment_deep() throws {
         let action: TestAction = { writer in
-            try writer.write(fragment: .complex(
-                name: "foo",
-                elements: [
-                    .mixed(name: "bar", items: [
-                        .string("baz"),
-                        .data("blee".data(using: .utf8)!),
-                    ]),
-                ]
-            ))
+            try writer.write(
+                fragment: .complex(
+                    name: "foo",
+                    elements: [
+                        .mixed(
+                            name: "bar", items: [
+                                .string("baz"),
+                                .data("blee".data(using: .utf8)!),
+                            ]
+                        ),
+                    ]
+                )
+            )
         }
         
         let compact = try self.withCompactWriter(action)
         XCTAssertEqual(compact, "<foo><bar>baz<![CDATA[blee]]></bar></foo>")
         
         let spaceIndented = try self.withSpaceIndentedWriter(action)
-        XCTAssertEqual(spaceIndented,
-"""
-<foo>
-    <bar>
-        baz
-        <![CDATA[blee]]>
-    </bar>
-</foo>
-
-"""
-       )
+        XCTAssertEqual(
+            spaceIndented,
+            """
+            <foo>
+                <bar>
+                    baz
+                    <![CDATA[blee]]>
+                </bar>
+            </foo>
+            
+            """
+        )
     }
     
     func test_write_document_exceeding_stream_memory() throws {
@@ -399,23 +416,27 @@ class XMLWriterTests: XCTestCase {
         
         // This is expected to fail as the buffer doesn't have any capacity:
         XCTAssertThrowsError(
-            try writer.write(document: XMLDocumentNode(
-                header: nil,
-                rootElement: .empty(
-                    name: "foo"
+            try writer.write(
+                document: XMLDocumentNode(
+                    header: nil,
+                    rootElement: .empty(
+                        name: "foo"
+                    )
                 )
-            ))
+            )
         )
     }
     
     func test_write_document_empty() throws {
         let action: TestAction = { writer in
-            try writer.write(document: XMLDocumentNode(
-                header: nil,
-                rootElement: .empty(
-                    name: "foo"
+            try writer.write(
+                document: XMLDocumentNode(
+                    header: nil,
+                    rootElement: .empty(
+                        name: "foo"
+                    )
                 )
-            ))
+            )
         }
         
         let compact = try self.withCompactWriter(action)
@@ -427,136 +448,156 @@ class XMLWriterTests: XCTestCase {
     
     func test_write_document_empty_with_header() throws {
         let action: TestAction = { writer in
-            try writer.write(document: XMLDocumentNode(
-                header: XMLDocumentHeader(version: "1.0", encoding: "UTF-8"),
-                rootElement: .empty(
-                    name: "foo"
+            try writer.write(
+                document: XMLDocumentNode(
+                    header: XMLDocumentHeader(version: "1.0", encoding: "UTF-8"),
+                    rootElement: .empty(
+                        name: "foo"
+                    )
                 )
-            ))
+            )
         }
         
         let compact = try self.withCompactWriter(action)
-        XCTAssertEqual(compact,
-"""
-<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\
-<foo/>
-"""
+        XCTAssertEqual(
+            compact,
+            """
+            <?xml version=\"1.0\" encoding=\"UTF-8\" ?>\
+            <foo/>
+            """
         )
         
         let spaceIndented = try self.withSpaceIndentedWriter(action)
-        XCTAssertEqual(spaceIndented,
-"""
-<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
-<foo/>
-
-"""
+        XCTAssertEqual(
+            spaceIndented,
+            """
+            <?xml version=\"1.0\" encoding=\"UTF-8\" ?>
+            <foo/>
+            
+            """
         )
     }
     
     func test_write_document_deep() throws {
         let action: TestAction = { writer in
-            try writer.write(document: XMLDocumentNode(
-                header: nil,
-                rootElement: .complex(
-                    name: "foo",
-                    elements: [
-                        .mixed(name: "bar", items: [
-                            .string("baz"),
-                            .data("blee".data(using: .utf8)!),
-                        ]),
-                    ]
+            try writer.write(
+                document: XMLDocumentNode(
+                    header: nil,
+                    rootElement: .complex(
+                        name: "foo",
+                        elements: [
+                            .mixed(
+                                name: "bar", items: [
+                                    .string("baz"),
+                                    .data("blee".data(using: .utf8)!),
+                                ]
+                            ),
+                        ]
+                    )
                 )
-            ))
+            )
         }
         
         let compact = try self.withCompactWriter(action)
-        XCTAssertEqual(compact,
-"""
-<foo><bar>baz<![CDATA[blee]]></bar></foo>
-"""
+        XCTAssertEqual(
+            compact,
+            """
+            <foo><bar>baz<![CDATA[blee]]></bar></foo>
+            """
         )
         
         let spaceIndented = try self.withSpaceIndentedWriter(action)
-        XCTAssertEqual(spaceIndented,
-"""
-<foo>
-    <bar>
-        baz
-        <![CDATA[blee]]>
-    </bar>
-</foo>
-
-"""
+        XCTAssertEqual(
+            spaceIndented,
+            """
+            <foo>
+                <bar>
+                    baz
+                    <![CDATA[blee]]>
+                </bar>
+            </foo>
+            
+            """
         )
     }
     
     func test_write_document_deep_with_header() throws {
         let action: TestAction = { writer in
-            try writer.write(document: XMLDocumentNode(
-                header: XMLDocumentHeader(version: "1.0", encoding: "UTF-8"),
-                rootElement: .complex(
-                    name: "foo",
-                    elements: [
-                        .mixed(name: "bar", items: [
-                            .string("baz"),
-                            .data("blee".data(using: .utf8)!),
-                        ]),
-                    ]
+            try writer.write(
+                document: XMLDocumentNode(
+                    header: XMLDocumentHeader(version: "1.0", encoding: "UTF-8"),
+                    rootElement: .complex(
+                        name: "foo",
+                        elements: [
+                            .mixed(
+                                name: "bar", items: [
+                                    .string("baz"),
+                                    .data("blee".data(using: .utf8)!),
+                                ]
+                            ),
+                        ]
+                    )
                 )
-            ))
+            )
         }
         
         let compact = try self.withCompactWriter(action)
-        XCTAssertEqual(compact,
-"""
-<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\
-<foo><bar>baz<![CDATA[blee]]></bar></foo>
-"""
-       )
+        XCTAssertEqual(
+            compact,
+            """
+            <?xml version=\"1.0\" encoding=\"UTF-8\" ?>\
+            <foo><bar>baz<![CDATA[blee]]></bar></foo>
+            """
+        )
         
         let spaceIndented = try self.withSpaceIndentedWriter(action)
-        XCTAssertEqual(spaceIndented,
-"""
-<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
-<foo>
-    <bar>
-        baz
-        <![CDATA[blee]]>
-    </bar>
-</foo>
-
-"""
+        XCTAssertEqual(
+            spaceIndented,
+            """
+            <?xml version=\"1.0\" encoding=\"UTF-8\" ?>
+            <foo>
+                <bar>
+                    baz
+                    <![CDATA[blee]]>
+                </bar>
+            </foo>
+            
+            """
         )
     }
     
     func test_write_tab_indentation() throws {
         let action: TestAction = { writer in
-            try writer.write(fragment: .complex(
-                name: "foo",
-                elements: [
-                    .empty(name: "bar"),
-                ]
-            ))
+            try writer.write(
+                fragment: .complex(
+                    name: "foo",
+                    elements: [
+                        .empty(name: "bar"),
+                    ]
+                )
+            )
         }
         
         let spaceIndented = try self.withSpaceIndentedWriter(action)
-        XCTAssertEqual(spaceIndented,
-"""
-<foo>
-    <bar/>
-</foo>
-
-"""
+        XCTAssertEqual(
+            spaceIndented,
+            """
+            <foo>
+                <bar/>
+            </foo>
+            
+            """
         )
         
         let tabIndented = try self.withTabIndentedWriter(action)
-        XCTAssertEqual(tabIndented,
-"""
-<foo>
-	<bar/>
-</foo>
-
-"""
+        XCTAssertEqual(
+            tabIndented,
+            """
+            <foo>
+            	<bar/>
+            </foo>
+            
+            """
         )
     }
 }

@@ -35,15 +35,15 @@ class XMLInt16FormatterTests: XCTestCase {
             
             ("+42", 42),
         ]
-
+        
         let formatter = Formatter()
-
+        
         for (string, expected) in examples {
             let value = try formatter.value(from: string)
             XCTAssertEqual(value, expected)
         }
     }
-
+    
     func test_value_from_string_invalid() throws {
         let examples: [String] = [
             "98765432109876543210",
@@ -52,9 +52,9 @@ class XMLInt16FormatterTests: XCTestCase {
             "      ",
             "",
         ]
-
+        
         let formatter = Formatter()
-
+        
         for string in examples {
             XCTAssertThrowsError(try formatter.value(from: string))
         }
