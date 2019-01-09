@@ -11,7 +11,7 @@ public struct XMLDataFormatter {
         case raw
         case base64
         
-        public static let `default`: Format = .raw
+        public static let `default`: Format = .base64
     }
     
     public let format: Format
