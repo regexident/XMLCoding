@@ -65,7 +65,7 @@ extension XMLElementNodeTests {
     func test_append_with_string() {
         let string = "foo"
         
-        var subject = self.element()
+        let subject = self.element()
         var content = subject.content
         
         subject.append(string: string)
@@ -77,7 +77,7 @@ extension XMLElementNodeTests {
     func test_append_with_data() {
         let data = "foo".data(using: .utf8)!
         
-        var subject = self.element()
+        let subject = self.element()
         var content = subject.content
         
         subject.append(data: data)
@@ -93,7 +93,7 @@ extension XMLElementNodeTests {
             content: .empty(XMLEmptyContent())
         )
         
-        var subject = self.element()
+        let subject = self.element()
         var content = element.content
         
         subject.append(element: element)

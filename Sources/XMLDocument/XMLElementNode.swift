@@ -16,10 +16,20 @@ public struct XMLElementNodeInfo: Equatable {
     }
 }
 
-public struct XMLElementNode: Equatable {
+public final class XMLElementNode {
     public var info: XMLElementNodeInfo
     public var attributes: [String: String]
     public var content: XMLElementNodeContent
+    
+    public init(
+        info: XMLElementNodeInfo,
+        attributes: [String: String],
+        content: XMLElementNodeContent
+    ) {
+        self.info = info
+        self.attributes = attributes
+        self.content = content
+    }
     
     public static func empty(name: String, attributes: [String: String] = [:]) -> XMLElementNode {
         return XMLElementNode(
@@ -61,16 +71,31 @@ public struct XMLElementNode: Equatable {
         )
     }
     
-    public mutating func append(string: String) {
+    public func append(string: String) {
         self.content.append(string: string)
     }
     
-    public mutating func append(data: Data) {
+    public func append(data: Data) {
         self.content.append(data: data)
     }
     
-    public mutating func append(element: XMLElementNode) {
+    public func append(element: XMLElementNode) {
         self.content.append(element: element)
+    }
+}
+
+extension XMLElementNode: Equatable {
+    public static func == (lhs: XMLElementNode, rhs: XMLElementNode) -> Bool {
+        guard lhs.info == rhs.info else {
+            return false
+        }
+        guard lhs.attributes == rhs.attributes else {
+            return false
+        }
+        guard lhs.content == rhs.content else {
+            return false
+        }
+        return true
     }
 }
 
