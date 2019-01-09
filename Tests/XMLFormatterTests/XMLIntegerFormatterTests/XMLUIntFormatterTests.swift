@@ -20,7 +20,7 @@ class XMLUIntFormatterTests: XCTestCase {
         }
     }
     
-    func test_value_from_string_valid() throws {
+    func test_value_from_string() throws {
         let examples: [(String, Value)] = [
             ("1", 1),
             ("0", 0),
@@ -55,7 +55,7 @@ class XMLUIntFormatterTests: XCTestCase {
     
     static var allTests = [
         ("test_string_from_value", test_string_from_value),
-        ("test_value_from_string_valid", test_value_from_string_valid),
+        ("test_value_from_string", test_value_from_string),
         ("test_value_from_string_invalid", test_value_from_string_invalid),
     ]
 }
