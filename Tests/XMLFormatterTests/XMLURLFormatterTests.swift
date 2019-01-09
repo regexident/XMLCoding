@@ -29,7 +29,7 @@ class XMLURLFormatterTests: XCTestCase {
         }
     }
     
-    func test_value_from_string_valid() throws {
+    func test_value_from_string() throws {
         let examples: [(String, Value)] = [
             (
                 "http://example.com",
