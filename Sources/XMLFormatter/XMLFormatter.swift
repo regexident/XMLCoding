@@ -9,18 +9,24 @@ public protocol XMLFormatter {
 
     func value(from string: String) throws -> Value
     func string(from value: Value) throws -> String
-
-    func data(from value: Value) throws -> Data
 }
 
 extension XMLFormatter {
-    public func data(from value: Value) throws -> Data {
+    public func data(from value: Value, encoding: String.Encoding = .utf8) throws -> Data {
         let string = try self.string(from: value)
 
-        guard let data = string.data(using: .utf8) else {
+        guard let data = string.data(using: encoding) else {
             throw XMLFormatterError.invalidStringEncoding
         }
 
         return data
+    }
+
+    public func value(from data: Data, encoding: String.Encoding = .utf8) throws -> Value {
+        guard let string = String(data: data, encoding: encoding) else {
+            throw XMLFormatterError.invalidStringEncoding
+        }
+
+        return try value(from: string)
     }
 }
