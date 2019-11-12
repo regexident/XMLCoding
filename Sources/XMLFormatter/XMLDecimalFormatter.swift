@@ -1,12 +1,13 @@
 import Foundation
 
+public enum XMLDecimalFormatterError: Swift.Error {
+    case invalidValue
+    case infinityUnsupported
+}
+
 public struct XMLDecimalFormatter {
     public typealias Value = Decimal
-    
-    public enum Error: Swift.Error {
-        case invalidValue
-        case infinityUnsupported
-    }
+    public typealias Error = XMLDecimalFormatterError
     
     public init() {}
 }

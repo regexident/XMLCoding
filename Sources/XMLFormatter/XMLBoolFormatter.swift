@@ -1,11 +1,12 @@
 import Foundation
 
+public enum XMLBoolFormatterError: Swift.Error {
+    case invalidValue
+}
+
 public struct XMLBoolFormatter {
     public typealias Value = Bool
-    
-    public enum Error: Swift.Error {
-        case invalidValue
-    }
+    public typealias Error = XMLBoolFormatterError
     
     public init() {}
 }

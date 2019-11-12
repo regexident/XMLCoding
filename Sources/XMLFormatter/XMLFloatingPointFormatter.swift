@@ -3,7 +3,7 @@ import Foundation
 public protocol FixedWidthFloatingPoint: BinaryFloatingPoint {
     var isNaN: Bool { get }
     var isInfinite: Bool { get }
-
+    
     init?<S>(_ text: S) where S: StringProtocol
 }
 
@@ -15,13 +15,14 @@ extension Double: FixedWidthFloatingPoint {
     // Required methods are already provided by Float
 }
 
+public enum XMLFloatingPointFormatterError: Swift.Error {
+    case invalidValue
+}
+
 public struct XMLFloatingPointFormatter<T: FixedWidthFloatingPoint> {
     public typealias Value = T
-
-    public enum Error: Swift.Error {
-        case invalidValue
-    }
-
+    public typealias Error = XMLFloatingPointFormatterError
+    
     public init() {}
 }
 
@@ -32,16 +33,16 @@ extension XMLFloatingPointFormatter: XMLFormatter {
         }
         return value
     }
-
+    
     public func string(from value: Value) throws -> String {
         guard !value.isNaN else {
             return "NaN"
         }
-
+        
         guard !value.isInfinite else {
             return (value > 0.0) ? "INF" : "-INF"
         }
-
+        
         return "\(value)"
     }
 }

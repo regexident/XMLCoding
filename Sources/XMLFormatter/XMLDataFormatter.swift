@@ -1,11 +1,12 @@
 import Foundation
 
+public enum XMLDataFormatterError: Swift.Error {
+    case invalidValue
+}
+
 public struct XMLDataFormatter {
     public typealias Value = Data
-    
-    public enum Error: Swift.Error {
-        case invalidValue
-    }
+    public typealias Error = XMLDataFormatterError
     
     public enum Format: Equatable {
         case raw

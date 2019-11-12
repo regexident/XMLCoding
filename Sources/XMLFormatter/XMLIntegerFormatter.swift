@@ -1,11 +1,12 @@
 import Foundation
 
+public enum XMLIntegerFormatterError: Swift.Error {
+    case invalidValue
+}
+
 public struct XMLIntegerFormatter<T: FixedWidthInteger> {
     public typealias Value = T
-    
-    public enum Error: Swift.Error {
-        case invalidValue
-    }
+    public typealias Error = XMLIntegerFormatterError
     
     public init() {}
 }

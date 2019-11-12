@@ -1,11 +1,12 @@
 import Foundation
 
+public enum XMLDateFormatterError: Swift.Error {
+    case invalidValue
+}
+
 public struct XMLDateFormatter {
     public typealias Value = Date
-    
-    public enum Error: Swift.Error {
-        case invalidValue
-    }
+    public typealias Error = XMLDateFormatterError
     
     public enum Format: Equatable {
         case secondsSince1970

@@ -1,11 +1,12 @@
 import Foundation
 
+public enum XMLURLFormatterError: Swift.Error {
+    case invalidValue
+}
+
 public struct XMLURLFormatter {
     public typealias Value = URL
-    
-    public enum Error: Swift.Error {
-        case invalidValue
-    }
+    public typealias Error = XMLURLFormatterError
     
     public init() {}
 }
