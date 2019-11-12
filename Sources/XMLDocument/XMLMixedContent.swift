@@ -2,6 +2,10 @@ import Foundation
 
 public struct XMLMixedContent: Equatable {
     public var items: [XMLMixedContentItem] = []
+    
+    public var count: Int {
+        return self.items.count
+    }
 }
 
 public enum XMLMixedContentItem: Equatable {

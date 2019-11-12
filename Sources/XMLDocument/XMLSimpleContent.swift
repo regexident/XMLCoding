@@ -17,4 +17,8 @@ public enum XMLSimpleContent: Equatable {
         }
         return data
     }
+    
+    public var count: Int {
+        return 1
+    }
 }

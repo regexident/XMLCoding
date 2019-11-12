@@ -4,7 +4,7 @@ public struct XMLElementNodeInfo: Equatable {
     public var name: String
     public var namespaceURI: String?
     public var qualifiedName: String?
-
+    
     init(
         name: String,
         namespaceURI: String? = nil,
@@ -20,7 +20,7 @@ public final class XMLElementNode {
     public var info: XMLElementNodeInfo
     public var attributes: [String: String]
     public var content: XMLElementNodeContent
-
+    
     public init(
         info: XMLElementNodeInfo,
         attributes: [String: String],
@@ -30,7 +30,7 @@ public final class XMLElementNode {
         self.attributes = attributes
         self.content = content
     }
-
+    
     public convenience init(
         name: String,
         attributes: [String: String],
@@ -42,7 +42,7 @@ public final class XMLElementNode {
             content: content
         )
     }
-
+    
     public static func empty(name: String, attributes: [String: String] = [:]) -> XMLElementNode {
         return XMLElementNode(
             name: name,
@@ -50,7 +50,7 @@ public final class XMLElementNode {
             content: .empty(XMLEmptyContent())
         )
     }
-
+    
     public static func string(name: String, string: String, attributes: [String: String] = [:]) -> XMLElementNode {
         return XMLElementNode(
             name: name,
@@ -58,7 +58,7 @@ public final class XMLElementNode {
             content: .simple(.string(string))
         )
     }
-
+    
     public static func data(name: String, data: Data, attributes: [String: String] = [:]) -> XMLElementNode {
         return XMLElementNode(
             name: name,
@@ -66,7 +66,7 @@ public final class XMLElementNode {
             content: .simple(.data(data))
         )
     }
-
+    
     public static func complex(name: String, elements: [XMLElementNode], attributes: [String: String] = [:]) -> XMLElementNode {
         return XMLElementNode(
             name: name,
@@ -74,7 +74,7 @@ public final class XMLElementNode {
             content: .complex(XMLComplexContent(elements: elements))
         )
     }
-
+    
     public static func mixed(name: String, items: [XMLMixedContentItem], attributes: [String: String] = [:]) -> XMLElementNode {
         return XMLElementNode(
             name: name,
@@ -82,17 +82,17 @@ public final class XMLElementNode {
             content: .mixed(XMLMixedContent(items: items))
         )
     }
-
+    
     public func append(string: String) {
-        content.append(string: string)
+        self.content.append(string: string)
     }
-
+    
     public func append(data: Data) {
-        content.append(data: data)
+        self.content.append(data: data)
     }
-
+    
     public func append(element: XMLElementNode) {
-        content.append(element: element)
+        self.content.append(element: element)
     }
 }
 
@@ -113,34 +113,53 @@ extension XMLElementNode: Equatable {
 
 extension XMLElementNode: XMLVisitable {
     public typealias Output = ()
-
-    public func accept<T: XMLVisitor>(visitor: T) throws -> Void {
+    
+    public func accept<T: XMLVisitor>(visitor: T) throws -> () {
         let info = self.info
         let attributes = self.attributes
-        switch content {
+        switch self.content {
         case .empty:
             try visitor.visit(element: info, content: nil, attributes: attributes)
-        case let .simple(content):
+        case .simple(let content):
             try visitor.visit(element: info, content: content, attributes: attributes)
-        case let .complex(content):
+        case .complex(let content):
             try visitor.enter(element: info, attributes: attributes)
             for element in content.elements {
                 try element.accept(visitor: visitor)
             }
             try visitor.exit(element: info)
-        case let .mixed(content):
+        case .mixed(let content):
             try visitor.enter(element: info, attributes: attributes)
             for item in content.items {
                 switch item {
-                case let .string(string):
+                case .string(let string):
                     try visitor.visit(string: string)
-                case let .data(data):
+                case .data(let data):
                     try visitor.visit(data: data)
-                case let .element(element):
+                case .element(let element):
                     try element.accept(visitor: visitor)
                 }
             }
             try visitor.exit(element: info)
         }
+    }
+}
+
+extension XMLElementNode: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        let typeName = String(describing: type(of: self))
+        let name = self.info.name
+        let qualifiedName = self.info.qualifiedName
+        let attributeCount = self.attributes.count
+        let contentCount = self.content.count
+        
+        let properties = [
+            "name: \(name)",
+            qualifiedName.map { "qualifiedName: \($0)" },
+            "attributes: \(attributeCount)",
+            "sub-nodes: \(contentCount)",
+        ].compactMap { $0 }.joined(separator: ", ")
+        
+        return "<\(typeName) \(properties)>"
     }
 }
