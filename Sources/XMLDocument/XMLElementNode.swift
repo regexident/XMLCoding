@@ -144,22 +144,3 @@ extension XMLElementNode: XMLVisitable {
         }
     }
 }
-
-extension XMLElementNode: CustomDebugStringConvertible {
-    public var debugDescription: String {
-        let typeName = String(describing: type(of: self))
-        let name = self.info.name
-        let qualifiedName = self.info.qualifiedName
-        let attributeCount = self.attributes.count
-        let contentCount = self.content.count
-        
-        let properties = [
-            "name: \(name)",
-            qualifiedName.map { "qualifiedName: \($0)" },
-            "attributes: \(attributeCount)",
-            "sub-nodes: \(contentCount)",
-        ].compactMap { $0 }.joined(separator: ", ")
-        
-        return "<\(typeName) \(properties)>"
-    }
-}
