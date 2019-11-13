@@ -16,20 +16,21 @@ internal class XMLInternalEncoder: Encoder {
     internal let options: XMLEncoder._Options
     
     /// The path to the current point in encoding.
-    public var codingPath: [CodingKey] {
-        didSet {
-            let before = oldValue.map { $0.stringValue }.joined(separator: ".")
-            let after = self.codingPath.map { $0.stringValue }.joined(separator: ".")
-            if oldValue.count < self.codingPath.count {
-                print("🔶: \"\(before)\" -> \"\(after)\"")
-            } else {
-                print("🔶: \"\(before)\" -> \"\(after)\"")
-            }
-            if oldValue.last?.stringValue == self.codingPath.last?.stringValue {
-                print("🔶 !!!")
-            }
-        }
-    }
+    public var codingPath: [CodingKey]
+//    {
+//        didSet {
+//            let before = oldValue.map { $0.stringValue }.joined(separator: ".")
+//            let after = self.codingPath.map { $0.stringValue }.joined(separator: ".")
+//            if oldValue.count < self.codingPath.count {
+//                print("🔶: \"\(before)\" -> \"\(after)\"")
+//            } else {
+//                print("🔶: \"\(before)\" -> \"\(after)\"")
+//            }
+//            if oldValue.last?.stringValue == self.codingPath.last?.stringValue {
+//                print("🔶 !!!")
+//            }
+//        }
+//    }
     
     public var nodeEncodings: [(CodingKey) -> XMLEncoder.NodeEncoding]
     
@@ -79,10 +80,6 @@ internal class XMLInternalEncoder: Encoder {
     internal func push(container: Container) {
         self.storage.push(container: container)
     }
-    
-//    internal func popContainerUnchecked() -> Container {
-//        return self.storage.popContainerUnchecked()
-//    }
     
     internal func popContainer() -> Container? {
         return self.storage.popContainer()

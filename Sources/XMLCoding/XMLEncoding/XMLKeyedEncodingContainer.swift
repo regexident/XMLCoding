@@ -15,24 +15,24 @@ struct XMLKeyedEncodingContainer<K: CodingKey>: KeyedEncodingContainerProtocol {
     
     private let encoder: XMLInternalEncoder
     
-    private let element: XMLElementNode
+    private let container: XMLElementNode
     
     public let codingPath: [CodingKey]
     
     init(
         referencing encoder: XMLInternalEncoder,
         codingPath: [CodingKey],
-        wrapping element: XMLElementNode
+        wrapping container: XMLElementNode
     ) {
         self.encoder = encoder
         self.codingPath = codingPath
-        self.element = element
+        self.container = container
     }
     
     public mutating func encodeNil(forKey key: Key) throws {
         let name = self.encoder.resolve(encodingKey: key)
         let element = XMLElementNode.empty(name: name)
-        self.element.append(element: element)
+        self.container.append(element: element)
     }
     
     public mutating func encode(_ value: Bool, forKey key: Key) throws {
@@ -114,59 +114,58 @@ struct XMLKeyedEncodingContainer<K: CodingKey>: KeyedEncodingContainerProtocol {
                 ))
             }
             let name = self.encoder.resolve(encodingKey: key)
-            self.element.attributes[name] = string
+            self.container.attributes[name] = string
         case .element:
-            self.element.append(element: element)
+            self.container.append(element: element)
         }
     }
     
     public mutating func nestedContainer<NestedKey>(
         keyedBy _: NestedKey.Type,
-        forKey key: Key
+        forKey codingKey: Key
     ) -> KeyedEncodingContainer<NestedKey> {
         var codingPath = self.codingPath
-        codingPath.append(key)
+        codingPath.append(codingKey)
         
         let keyEncodingStrategy = self.encoder.options.keyEncodingStrategy
-        
         let encodingKey = XMLEncodingKey(
-            key: key,
+            key: codingKey,
             at: codingPath,
             keyEncodingStrategy: keyEncodingStrategy
         )
         
-        let element = XMLElementNode.empty(name: encodingKey.xmlKey)
+        let container = XMLElementNode.empty(name: encodingKey.xmlKey)
+        self.container.append(element: container)
         
-        let container = XMLKeyedEncodingContainer<NestedKey>(
+        return KeyedEncodingContainer(XMLKeyedEncodingContainer<NestedKey>(
             referencing: self.encoder,
             codingPath: codingPath,
-            wrapping: element
-        )
-        
-        return KeyedEncodingContainer(container)
+            wrapping: container
+        ))
     }
     
     public mutating func nestedUnkeyedContainer(
-        forKey key: Key
+        forKey codingKey: Key
     ) -> UnkeyedEncodingContainer {
         var codingPath = self.codingPath
-        codingPath.append(key)
+        codingPath.append(codingKey)
         
         let keyEncodingStrategy = self.encoder.options.keyEncodingStrategy
         
         let encodingKey = XMLEncodingKey(
-            key: key,
+            key: codingKey,
             at: codingPath,
             keyEncodingStrategy: keyEncodingStrategy
         )
         
-        let element = XMLElementNode.empty(name: encodingKey.xmlKey)
+        let container = XMLElementNode.empty(name: encodingKey.xmlKey)
+        self.container.append(element: container)
         
         return XMLUnkeyedEncodingContainer(
-            key: key,
+            key: codingKey,
             referencing: self.encoder,
             codingPath: codingPath,
-            wrapping: element
+            wrapping: container
         )
     }
     

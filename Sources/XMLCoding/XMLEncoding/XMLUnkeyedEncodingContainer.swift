@@ -134,35 +134,32 @@ internal struct XMLUnkeyedEncodingContainer: UnkeyedEncodingContainer {
         self.container.append(element: element)
     }
     
-    public mutating func nestedContainer<NestedKey>(keyedBy _: NestedKey.Type) -> KeyedEncodingContainer<NestedKey> {
+    public mutating func nestedContainer<NestedKey>(
+        keyedBy _: NestedKey.Type
+    ) -> KeyedEncodingContainer<NestedKey> {
         let codingKey = self.key
-        
         var codingPath = self.codingPath
         codingPath.append(codingKey)
         
         let keyEncodingStrategy = self.encoder.options.keyEncodingStrategy
-        
         let encodingKey = XMLEncodingKey(
             key: codingKey,
             at: codingPath,
             keyEncodingStrategy: keyEncodingStrategy
         )
         
-        let element = XMLElementNode.empty(name: encodingKey.xmlKey)
+        let container = XMLElementNode.empty(name: encodingKey.xmlKey)
+        self.container.append(element: container)
         
-        let container = XMLKeyedEncodingContainer<NestedKey>(
+        return KeyedEncodingContainer(XMLKeyedEncodingContainer<NestedKey>(
             referencing: self.encoder,
             codingPath: codingPath,
-            wrapping: element
-        )
-        
-        return KeyedEncodingContainer(container)
+            wrapping: container
+        ))
     }
     
     public mutating func nestedUnkeyedContainer() -> UnkeyedEncodingContainer {
-        let codingKey = XMLCodingKey(index: self.count)
-        
-        // print(#function, "key:", self.rootKey.stringValue, "codingPath:", self.codingPath.map { $0.stringValue }.joined(separator: "."))
+        let codingKey = self.key
         var codingPath = self.codingPath
         codingPath.append(codingKey)
         
@@ -174,15 +171,66 @@ internal struct XMLUnkeyedEncodingContainer: UnkeyedEncodingContainer {
             keyEncodingStrategy: keyEncodingStrategy
         )
         
-        let element = XMLElementNode.empty(name: encodingKey.xmlKey)
+        let container = XMLElementNode.empty(name: encodingKey.xmlKey)
+        self.container.append(element: container)
         
         return XMLUnkeyedEncodingContainer(
             key: codingKey,
             referencing: self.encoder,
             codingPath: codingPath,
-            wrapping: element
+            wrapping: container
         )
     }
+    
+//    public mutating func nestedContainer<NestedKey>(keyedBy _: NestedKey.Type) -> KeyedEncodingContainer<NestedKey> {
+//        let codingKey = self.key
+//
+//        var codingPath = self.codingPath
+//        codingPath.append(codingKey)
+//
+//        let keyEncodingStrategy = self.encoder.options.keyEncodingStrategy
+//
+//        let encodingKey = XMLEncodingKey(
+//            key: codingKey,
+//            at: codingPath,
+//            keyEncodingStrategy: keyEncodingStrategy
+//        )
+//
+//        let element = XMLElementNode.empty(name: encodingKey.xmlKey)
+//
+//        let container = XMLKeyedEncodingContainer<NestedKey>(
+//            referencing: self.encoder,
+//            codingPath: codingPath,
+//            wrapping: element
+//        )
+//
+//        return KeyedEncodingContainer(container)
+//    }
+//
+//    public mutating func nestedUnkeyedContainer() -> UnkeyedEncodingContainer {
+//        let codingKey = XMLCodingKey(index: self.count)
+//
+//        // print(#function, "key:", self.rootKey.stringValue, "codingPath:", self.codingPath.map { $0.stringValue }.joined(separator: "."))
+//        var codingPath = self.codingPath
+//        codingPath.append(codingKey)
+//
+//        let keyEncodingStrategy = self.encoder.options.keyEncodingStrategy
+//
+//        let encodingKey = XMLEncodingKey(
+//            key: codingKey,
+//            at: codingPath,
+//            keyEncodingStrategy: keyEncodingStrategy
+//        )
+//
+//        let element = XMLElementNode.empty(name: encodingKey.xmlKey)
+//
+//        return XMLUnkeyedEncodingContainer(
+//            key: codingKey,
+//            referencing: self.encoder,
+//            codingPath: codingPath,
+//            wrapping: element
+//        )
+//    }
     
     public mutating func superEncoder() -> Encoder {
         // print(#function, "key:", self.rootKey.stringValue, "codingPath:", self.codingPath.map { $0.stringValue }.joined(separator: "."))
