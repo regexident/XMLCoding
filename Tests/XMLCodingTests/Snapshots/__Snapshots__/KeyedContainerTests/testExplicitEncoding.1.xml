@@ -1,0 +1,6 @@
+<root>
+    <keyed>
+        <bar>bar value</bar>
+        <foo>foo value</foo>
+    </keyed>
+</root>
