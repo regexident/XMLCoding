@@ -38,6 +38,7 @@ let package = Package(
         ),
     ],
     dependencies: [
+          .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.6.0"),
     ],
     targets: [
         .target(
@@ -99,6 +100,7 @@ let package = Package(
             name: "XMLCodingTests",
             dependencies: [
                 "XMLCoding",
+                "SnapshotTesting",
             ]
         ),
     ]
