@@ -1,10 +1,10 @@
 import Foundation
 
-struct XMLCodingKey: CodingKey {
+struct XMLInternalCodingKey: CodingKey {
     public let stringValue: String
     public let intValue: Int?
     
-    static let `super` = XMLCodingKey(stringValue: "super")!
+    static let `super` = XMLInternalCodingKey(stringValue: "super")!
     
     public init?(stringValue: String) {
         self.init(stringValue: stringValue, intValue: nil)

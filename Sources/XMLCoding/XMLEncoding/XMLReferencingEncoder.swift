@@ -38,7 +38,7 @@ internal class XMLReferencingEncoder: XMLInternalEncoder {
             codingPath: encoder.codingPath
         )
         
-        self.codingPath.append(XMLCodingKey(index: index))
+        self.codingPath.append(XMLInternalCodingKey(index: index))
     }
     
     /// Initializes `self` by referencing the given dictionary container in the given encoder.

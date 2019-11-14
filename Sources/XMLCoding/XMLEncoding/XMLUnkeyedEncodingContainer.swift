@@ -125,7 +125,7 @@ internal struct XMLUnkeyedEncodingContainer: UnkeyedEncodingContainer {
         encode: (XMLInternalEncoder, CodingKey, T) throws -> XMLElementNode
     ) rethrows {
         let element: XMLElementNode = try self.encoder.with(codingPath: self.codingPath) { encoder in
-            encoder.codingPath.append(XMLCodingKey(index: self.count))
+            encoder.codingPath.append(XMLInternalCodingKey(index: self.count))
             defer { encoder.codingPath.removeLast() }
             
             return try encode(encoder, key, value)
@@ -208,7 +208,7 @@ internal struct XMLUnkeyedEncodingContainer: UnkeyedEncodingContainer {
 //    }
 //
 //    public mutating func nestedUnkeyedContainer() -> UnkeyedEncodingContainer {
-//        let codingKey = XMLCodingKey(index: self.count)
+//        let codingKey = XMLInternalCodingKey(index: self.count)
 //
 //        // print(#function, "key:", self.rootKey.stringValue, "codingPath:", self.codingPath.map { $0.stringValue }.joined(separator: "."))
 //        var codingPath = self.codingPath

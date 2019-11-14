@@ -174,8 +174,8 @@ struct XMLKeyedEncodingContainer<K: CodingKey>: KeyedEncodingContainerProtocol {
         fatalError()
 //        return _XMLReferencingEncoder(
 //            referencing: encoder,
-//            key: XMLCodingKey.super,
-//            convertedKey: _converted(XMLCodingKey.super),
+//            key: XMLInternalCodingKey.super,
+//            convertedKey: _converted(XMLInternalCodingKey.super),
 //            wrapping: container
 //        )
     }

@@ -120,7 +120,7 @@ public class XMLEncoder {
         rootKey: String,
         header: XMLDocumentHeader? = nil
     ) throws {
-        let key = XMLCodingKey(key: rootKey)
+        let key = XMLInternalCodingKey(key: rootKey)
         let codingPath: [CodingKey] = []
         
         let encoder = XMLInternalEncoder(

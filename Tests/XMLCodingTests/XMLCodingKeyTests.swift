@@ -1,10 +1,10 @@
 import XCTest
 @testable import XMLCoding
 
-class XMLCodingKeyTests: XCTestCase {
+class XMLInternalCodingKeyTests: XCTestCase {
     func test_init_stringValue() {
         let string = "foo"
-        let codingKeyOrNil = XMLCodingKey(stringValue: string)
+        let codingKeyOrNil = XMLInternalCodingKey(stringValue: string)
         
         XCTAssertNotNil(codingKeyOrNil)
         
@@ -18,7 +18,7 @@ class XMLCodingKeyTests: XCTestCase {
     
     func test_init_intValue() {
         let int = 42
-        let codingKeyOrNil = XMLCodingKey(intValue: int)
+        let codingKeyOrNil = XMLInternalCodingKey(intValue: int)
         
         XCTAssertNotNil(codingKeyOrNil)
         
@@ -32,7 +32,7 @@ class XMLCodingKeyTests: XCTestCase {
     
     func test_init_key() {
         let key = "foo"
-        let codingKey = XMLCodingKey(key: key)
+        let codingKey = XMLInternalCodingKey(key: key)
         
         XCTAssertEqual(codingKey.stringValue, key)
         XCTAssertNil(codingKey.intValue)
@@ -40,7 +40,7 @@ class XMLCodingKeyTests: XCTestCase {
     
     func test_init_index() {
         let index = 42
-        let codingKey = XMLCodingKey(index: index)
+        let codingKey = XMLInternalCodingKey(index: index)
         
         XCTAssertEqual(codingKey.stringValue, "Index 42")
         XCTAssertEqual(codingKey.intValue, index)
