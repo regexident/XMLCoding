@@ -1,0 +1,1906 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		"XMLCoding::XMLCodingPackageTests::ProductTarget" /* XMLCodingPackageTests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_154 /* Build configuration list for PBXAggregateTarget "XMLCodingPackageTests" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_157 /* PBXTargetDependency */,
+				OBJ_159 /* PBXTargetDependency */,
+				OBJ_161 /* PBXTargetDependency */,
+				OBJ_163 /* PBXTargetDependency */,
+				OBJ_165 /* PBXTargetDependency */,
+			);
+			name = XMLCodingPackageTests;
+			productName = XMLCodingPackageTests;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		BF3F68EC21EC983400F6D00B /* EncodingCodingPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3F68EB21EC983400F6D00B /* EncodingCodingPathTests.swift */; };
+		BF3F68EE21EC9FCA00F6D00B /* XMLCoding+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3F68ED21EC9FCA00F6D00B /* XMLCoding+Utilities.swift */; };
+		BF3F68F021ECC0E900F6D00B /* XMLFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3F68EF21ECC0E900F6D00B /* XMLFormatterTests.swift */; };
+		BF3F68F221ECC43200F6D00B /* XMLCodingKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3F68F121ECC43200F6D00B /* XMLCodingKeyTests.swift */; };
+		BF3F68F421ECCD9E00F6D00B /* EmptyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3F68F321ECCD9E00F6D00B /* EmptyTests.swift */; };
+		BF8221D621E9F09F008CAF19 /* NestedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8221D521E9F09F008CAF19 /* NestedTests.swift */; };
+		BF8221D821E9FC7B008CAF19 /* XMLEncodingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8221D721E9FC7B008CAF19 /* XMLEncodingKey.swift */; };
+		BF8221DC21EA35D9008CAF19 /* XMLElementNode+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8221DB21EA35D9008CAF19 /* XMLElementNode+Extensions.swift */; };
+		CA4BD8AF2DD4A6ED005D3A47 /* XMLInternalCodingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4BD8AE2DD4A6ED005D3A47 /* XMLInternalCodingKey.swift */; };
+		CA58EEBB237AD3B400A807ED /* XMLNodeEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA58EEBA237AD3B400A807ED /* XMLNodeEncodable.swift */; };
+		OBJ_118 /* EncodingError+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* EncodingError+Extensions.swift */; };
+		OBJ_119 /* XMLDataEncodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* XMLDataEncodingStrategy.swift */; };
+		OBJ_120 /* XMLDateEncodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* XMLDateEncodingStrategy.swift */; };
+		OBJ_121 /* XMLEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* XMLEncoder.swift */; };
+		OBJ_122 /* XMLEncodingStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* XMLEncodingStorage.swift */; };
+		OBJ_123 /* XMLInternalEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* XMLInternalEncoder.swift */; };
+		OBJ_124 /* XMLKeyEncodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* XMLKeyEncodingStrategy.swift */; };
+		OBJ_125 /* XMLKeyedEncodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* XMLKeyedEncodingContainer.swift */; };
+		OBJ_126 /* XMLNodeEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* XMLNodeEncoding.swift */; };
+		OBJ_127 /* XMLNodeEncodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* XMLNodeEncodingStrategy.swift */; };
+		OBJ_128 /* XMLNonConformingFloatEncodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* XMLNonConformingFloatEncodingStrategy.swift */; };
+		OBJ_129 /* XMLOutputFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* XMLOutputFormatting.swift */; };
+		OBJ_130 /* XMLReferencingEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* XMLReferencingEncoder.swift */; };
+		OBJ_131 /* XMLSingleValueEncodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* XMLSingleValueEncodingContainer.swift */; };
+		OBJ_132 /* XMLStringEncodingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* XMLStringEncodingStrategy.swift */; };
+		OBJ_133 /* XMLUnkeyedEncodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* XMLUnkeyedEncodingContainer.swift */; };
+		OBJ_135 /* XMLFormatter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLFormatter::Product" /* XMLFormatter.framework */; };
+		OBJ_136 /* XMLWriter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLWriter::Product" /* XMLWriter.framework */; };
+		OBJ_137 /* XMLReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLReader::Product" /* XMLReader.framework */; };
+		OBJ_138 /* XMLDocument.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLDocument::Product" /* XMLDocument.framework */; };
+		OBJ_152 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_171 /* EncodingTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_58 /* EncodingTestCase.swift */; };
+		OBJ_172 /* BoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_60 /* BoolTests.swift */; };
+		OBJ_173 /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_61 /* DataTests.swift */; };
+		OBJ_174 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_62 /* DateTests.swift */; };
+		OBJ_175 /* DecimalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_63 /* DecimalTests.swift */; };
+		OBJ_176 /* FloatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_64 /* FloatTests.swift */; };
+		OBJ_177 /* IntTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_65 /* IntTests.swift */; };
+		OBJ_178 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_66 /* StringTests.swift */; };
+		OBJ_179 /* UIntTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_67 /* UIntTests.swift */; };
+		OBJ_180 /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_68 /* URLTests.swift */; };
+		OBJ_181 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_69 /* XCTestManifests.swift */; };
+		OBJ_183 /* XMLCoding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLCoding::Product" /* XMLCoding.framework */; };
+		OBJ_184 /* XMLFormatter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLFormatter::Product" /* XMLFormatter.framework */; };
+		OBJ_185 /* XMLWriter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLWriter::Product" /* XMLWriter.framework */; };
+		OBJ_186 /* XMLReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLReader::Product" /* XMLReader.framework */; };
+		OBJ_187 /* XMLDocument.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLDocument::Product" /* XMLDocument.framework */; };
+		OBJ_197 /* XMLComplexContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* XMLComplexContent.swift */; };
+		OBJ_198 /* XMLDocumentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* XMLDocumentHeader.swift */; };
+		OBJ_199 /* XMLDocumentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* XMLDocumentNode.swift */; };
+		OBJ_200 /* XMLElementNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* XMLElementNode.swift */; };
+		OBJ_201 /* XMLElementNodeContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* XMLElementNodeContent.swift */; };
+		OBJ_202 /* XMLEmptyContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* XMLEmptyContent.swift */; };
+		OBJ_203 /* XMLMixedContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_49 /* XMLMixedContent.swift */; };
+		OBJ_204 /* XMLProcessingInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* XMLProcessingInstruction.swift */; };
+		OBJ_205 /* XMLSimpleContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* XMLSimpleContent.swift */; };
+		OBJ_206 /* XMLVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* XMLVisitor.swift */; };
+		OBJ_212 /* XMLElementNodeContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_71 /* XMLElementNodeContentTests.swift */; };
+		OBJ_213 /* XMLElementNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_72 /* XMLElementNodeTests.swift */; };
+		OBJ_214 /* XMLMixedContentItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_73 /* XMLMixedContentItemTests.swift */; };
+		OBJ_215 /* XMLSimpleContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* XMLSimpleContentTests.swift */; };
+		OBJ_217 /* XMLDocument.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLDocument::Product" /* XMLDocument.framework */; };
+		OBJ_223 /* XMLBoolFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* XMLBoolFormatter.swift */; };
+		OBJ_224 /* XMLDataFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_34 /* XMLDataFormatter.swift */; };
+		OBJ_225 /* XMLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_35 /* XMLDateFormatter.swift */; };
+		OBJ_226 /* XMLDecimalFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_36 /* XMLDecimalFormatter.swift */; };
+		OBJ_227 /* XMLFloatingPointFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_37 /* XMLFloatingPointFormatter.swift */; };
+		OBJ_228 /* XMLFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_38 /* XMLFormatter.swift */; };
+		OBJ_229 /* XMLIntegerFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_39 /* XMLIntegerFormatter.swift */; };
+		OBJ_230 /* XMLStringFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_40 /* XMLStringFormatter.swift */; };
+		OBJ_231 /* XMLURLFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* XMLURLFormatter.swift */; };
+		OBJ_237 /* XMLBoolFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_78 /* XMLBoolFormatterTests.swift */; };
+		OBJ_238 /* XMLDataFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_79 /* XMLDataFormatterTests.swift */; };
+		OBJ_239 /* XMLDateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_80 /* XMLDateFormatterTests.swift */; };
+		OBJ_240 /* XMLDecimalFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_81 /* XMLDecimalFormatterTests.swift */; };
+		OBJ_241 /* XMLDoubleFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_83 /* XMLDoubleFormatterTests.swift */; };
+		OBJ_242 /* XMLFloatFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_84 /* XMLFloatFormatterTests.swift */; };
+		OBJ_243 /* XMLInt16FormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_86 /* XMLInt16FormatterTests.swift */; };
+		OBJ_244 /* XMLInt32FormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_87 /* XMLInt32FormatterTests.swift */; };
+		OBJ_245 /* XMLInt64FormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_88 /* XMLInt64FormatterTests.swift */; };
+		OBJ_246 /* XMLInt8FormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_89 /* XMLInt8FormatterTests.swift */; };
+		OBJ_247 /* XMLIntFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_90 /* XMLIntFormatterTests.swift */; };
+		OBJ_248 /* XMLUInt16FormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_91 /* XMLUInt16FormatterTests.swift */; };
+		OBJ_249 /* XMLUInt32FormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_92 /* XMLUInt32FormatterTests.swift */; };
+		OBJ_250 /* XMLUInt64FormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_93 /* XMLUInt64FormatterTests.swift */; };
+		OBJ_251 /* XMLUInt8FormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_94 /* XMLUInt8FormatterTests.swift */; };
+		OBJ_252 /* XMLUIntFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_95 /* XMLUIntFormatterTests.swift */; };
+		OBJ_253 /* XMLStringFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_96 /* XMLStringFormatterTests.swift */; };
+		OBJ_254 /* XMLURLFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_97 /* XMLURLFormatterTests.swift */; };
+		OBJ_256 /* XMLFormatter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLFormatter::Product" /* XMLFormatter.framework */; };
+		OBJ_262 /* XMLParser+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_54 /* XMLParser+Extensions.swift */; };
+		OBJ_263 /* XMLReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_55 /* XMLReader.swift */; };
+		OBJ_265 /* XMLDocument.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLDocument::Product" /* XMLDocument.framework */; };
+		OBJ_271 /* XMLReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_99 /* XMLReaderTests.swift */; };
+		OBJ_273 /* XMLReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLReader::Product" /* XMLReader.framework */; };
+		OBJ_274 /* XMLDocument.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLDocument::Product" /* XMLDocument.framework */; };
+		OBJ_281 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* String+Extensions.swift */; };
+		OBJ_282 /* XMLWriter+XMLVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* XMLWriter+XMLVisitor.swift */; };
+		OBJ_283 /* XMLWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* XMLWriter.swift */; };
+		OBJ_285 /* XMLDocument.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLDocument::Product" /* XMLDocument.framework */; };
+		OBJ_291 /* XMLWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_76 /* XMLWriterTests.swift */; };
+		OBJ_293 /* XMLWriter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLWriter::Product" /* XMLWriter.framework */; };
+		OBJ_294 /* XMLDocument.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "XMLCoding::XMLDocument::Product" /* XMLDocument.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BF8221BF21E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLDocument";
+			remoteInfo = XMLDocument;
+		};
+		BF8221C021E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLDocument";
+			remoteInfo = XMLDocument;
+		};
+		BF8221C121E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLFormatter";
+			remoteInfo = XMLFormatter;
+		};
+		BF8221C221E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLWriter";
+			remoteInfo = XMLWriter;
+		};
+		BF8221C321E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLReader";
+			remoteInfo = XMLReader;
+		};
+		BF8221C421E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLDocument";
+			remoteInfo = XMLDocument;
+		};
+		BF8221C521E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLWriter";
+			remoteInfo = XMLWriter;
+		};
+		BF8221C621E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLDocument";
+			remoteInfo = XMLDocument;
+		};
+		BF8221C721E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLCoding";
+			remoteInfo = XMLCoding;
+		};
+		BF8221C821E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLFormatter";
+			remoteInfo = XMLFormatter;
+		};
+		BF8221C921E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLWriter";
+			remoteInfo = XMLWriter;
+		};
+		BF8221CA21E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLReader";
+			remoteInfo = XMLReader;
+		};
+		BF8221CB21E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLDocument";
+			remoteInfo = XMLDocument;
+		};
+		BF8221CC21E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLDocument";
+			remoteInfo = XMLDocument;
+		};
+		BF8221CD21E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLReader";
+			remoteInfo = XMLReader;
+		};
+		BF8221CE21E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLDocument";
+			remoteInfo = XMLDocument;
+		};
+		BF8221CF21E8A3AF008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLFormatter";
+			remoteInfo = XMLFormatter;
+		};
+		BF8221D021E8A3B0008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLReaderTests";
+			remoteInfo = XMLReaderTests;
+		};
+		BF8221D121E8A3B0008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLFormatterTests";
+			remoteInfo = XMLFormatterTests;
+		};
+		BF8221D221E8A3B0008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLWriterTests";
+			remoteInfo = XMLWriterTests;
+		};
+		BF8221D321E8A3B0008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLCodingTests";
+			remoteInfo = XMLCodingTests;
+		};
+		BF8221D421E8A3B0008CAF19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "XMLCoding::XMLDocumentTests";
+			remoteInfo = XMLDocumentTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BF3F68EB21EC983400F6D00B /* EncodingCodingPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodingCodingPathTests.swift; sourceTree = "<group>"; };
+		BF3F68ED21EC9FCA00F6D00B /* XMLCoding+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XMLCoding+Utilities.swift"; sourceTree = "<group>"; };
+		BF3F68EF21ECC0E900F6D00B /* XMLFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLFormatterTests.swift; sourceTree = "<group>"; };
+		BF3F68F121ECC43200F6D00B /* XMLCodingKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLCodingKeyTests.swift; sourceTree = "<group>"; };
+		BF3F68F321ECCD9E00F6D00B /* EmptyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTests.swift; sourceTree = "<group>"; };
+		BF8221D521E9F09F008CAF19 /* NestedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedTests.swift; sourceTree = "<group>"; };
+		BF8221D721E9FC7B008CAF19 /* XMLEncodingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLEncodingKey.swift; sourceTree = "<group>"; };
+		BF8221DB21EA35D9008CAF19 /* XMLElementNode+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XMLElementNode+Extensions.swift"; sourceTree = "<group>"; };
+		CA4BD8AE2DD4A6ED005D3A47 /* XMLInternalCodingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLInternalCodingKey.swift; sourceTree = "<group>"; };
+		CA58EEBA237AD3B400A807ED /* XMLNodeEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLNodeEncodable.swift; sourceTree = "<group>"; };
+		CA58EEC6237B0B3000A807ED /* NestedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedTests.swift; sourceTree = "<group>"; };
+		OBJ_12 /* EncodingError+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EncodingError+Extensions.swift"; sourceTree = "<group>"; };
+		OBJ_13 /* XMLDataEncodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDataEncodingStrategy.swift; sourceTree = "<group>"; };
+		OBJ_14 /* XMLDateEncodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDateEncodingStrategy.swift; sourceTree = "<group>"; };
+		OBJ_15 /* XMLEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLEncoder.swift; sourceTree = "<group>"; };
+		OBJ_16 /* XMLEncodingStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLEncodingStorage.swift; sourceTree = "<group>"; };
+		OBJ_17 /* XMLInternalEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLInternalEncoder.swift; sourceTree = "<group>"; };
+		OBJ_18 /* XMLKeyEncodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLKeyEncodingStrategy.swift; sourceTree = "<group>"; };
+		OBJ_19 /* XMLKeyedEncodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLKeyedEncodingContainer.swift; sourceTree = "<group>"; };
+		OBJ_20 /* XMLNodeEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLNodeEncoding.swift; sourceTree = "<group>"; };
+		OBJ_21 /* XMLNodeEncodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLNodeEncodingStrategy.swift; sourceTree = "<group>"; };
+		OBJ_22 /* XMLNonConformingFloatEncodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLNonConformingFloatEncodingStrategy.swift; sourceTree = "<group>"; };
+		OBJ_23 /* XMLOutputFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLOutputFormatting.swift; sourceTree = "<group>"; };
+		OBJ_24 /* XMLReferencingEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLReferencingEncoder.swift; sourceTree = "<group>"; };
+		OBJ_25 /* XMLSingleValueEncodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLSingleValueEncodingContainer.swift; sourceTree = "<group>"; };
+		OBJ_26 /* XMLStringEncodingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLStringEncodingStrategy.swift; sourceTree = "<group>"; };
+		OBJ_27 /* XMLUnkeyedEncodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLUnkeyedEncodingContainer.swift; sourceTree = "<group>"; };
+		OBJ_29 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		OBJ_30 /* XMLWriter+XMLVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XMLWriter+XMLVisitor.swift"; sourceTree = "<group>"; };
+		OBJ_31 /* XMLWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLWriter.swift; sourceTree = "<group>"; };
+		OBJ_33 /* XMLBoolFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLBoolFormatter.swift; sourceTree = "<group>"; };
+		OBJ_34 /* XMLDataFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDataFormatter.swift; sourceTree = "<group>"; };
+		OBJ_35 /* XMLDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDateFormatter.swift; sourceTree = "<group>"; };
+		OBJ_36 /* XMLDecimalFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDecimalFormatter.swift; sourceTree = "<group>"; };
+		OBJ_37 /* XMLFloatingPointFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLFloatingPointFormatter.swift; sourceTree = "<group>"; };
+		OBJ_38 /* XMLFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLFormatter.swift; sourceTree = "<group>"; };
+		OBJ_39 /* XMLIntegerFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLIntegerFormatter.swift; sourceTree = "<group>"; };
+		OBJ_40 /* XMLStringFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLStringFormatter.swift; sourceTree = "<group>"; };
+		OBJ_41 /* XMLURLFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLURLFormatter.swift; sourceTree = "<group>"; };
+		OBJ_43 /* XMLComplexContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLComplexContent.swift; sourceTree = "<group>"; };
+		OBJ_44 /* XMLDocumentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDocumentHeader.swift; sourceTree = "<group>"; };
+		OBJ_45 /* XMLDocumentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDocumentNode.swift; sourceTree = "<group>"; };
+		OBJ_46 /* XMLElementNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLElementNode.swift; sourceTree = "<group>"; };
+		OBJ_47 /* XMLElementNodeContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLElementNodeContent.swift; sourceTree = "<group>"; };
+		OBJ_48 /* XMLEmptyContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLEmptyContent.swift; sourceTree = "<group>"; };
+		OBJ_49 /* XMLMixedContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLMixedContent.swift; sourceTree = "<group>"; };
+		OBJ_50 /* XMLProcessingInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLProcessingInstruction.swift; sourceTree = "<group>"; };
+		OBJ_51 /* XMLSimpleContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLSimpleContent.swift; sourceTree = "<group>"; };
+		OBJ_52 /* XMLVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLVisitor.swift; sourceTree = "<group>"; };
+		OBJ_54 /* XMLParser+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XMLParser+Extensions.swift"; sourceTree = "<group>"; };
+		OBJ_55 /* XMLReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLReader.swift; sourceTree = "<group>"; };
+		OBJ_58 /* EncodingTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodingTestCase.swift; sourceTree = "<group>"; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		OBJ_60 /* BoolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolTests.swift; sourceTree = "<group>"; };
+		OBJ_61 /* DataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
+		OBJ_62 /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
+		OBJ_63 /* DecimalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalTests.swift; sourceTree = "<group>"; };
+		OBJ_64 /* FloatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatTests.swift; sourceTree = "<group>"; };
+		OBJ_65 /* IntTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntTests.swift; sourceTree = "<group>"; };
+		OBJ_66 /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
+		OBJ_67 /* UIntTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIntTests.swift; sourceTree = "<group>"; };
+		OBJ_68 /* URLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
+		OBJ_69 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
+		OBJ_71 /* XMLElementNodeContentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLElementNodeContentTests.swift; sourceTree = "<group>"; };
+		OBJ_72 /* XMLElementNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLElementNodeTests.swift; sourceTree = "<group>"; };
+		OBJ_73 /* XMLMixedContentItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLMixedContentItemTests.swift; sourceTree = "<group>"; };
+		OBJ_74 /* XMLSimpleContentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLSimpleContentTests.swift; sourceTree = "<group>"; };
+		OBJ_76 /* XMLWriterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLWriterTests.swift; sourceTree = "<group>"; };
+		OBJ_78 /* XMLBoolFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLBoolFormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_79 /* XMLDataFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDataFormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_80 /* XMLDateFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDateFormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_81 /* XMLDecimalFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDecimalFormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_83 /* XMLDoubleFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDoubleFormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_84 /* XMLFloatFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLFloatFormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_86 /* XMLInt16FormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLInt16FormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_87 /* XMLInt32FormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLInt32FormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_88 /* XMLInt64FormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLInt64FormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_89 /* XMLInt8FormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLInt8FormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_90 /* XMLIntFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLIntFormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_91 /* XMLUInt16FormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLUInt16FormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_92 /* XMLUInt32FormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLUInt32FormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_93 /* XMLUInt64FormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLUInt64FormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_94 /* XMLUInt8FormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLUInt8FormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_95 /* XMLUIntFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLUIntFormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_96 /* XMLStringFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLStringFormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_97 /* XMLURLFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLURLFormatterTests.swift; sourceTree = "<group>"; };
+		OBJ_99 /* XMLReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLReaderTests.swift; sourceTree = "<group>"; };
+		"XMLCoding::XMLCoding::Product" /* XMLCoding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XMLCoding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"XMLCoding::XMLCodingTests::Product" /* XMLCodingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = XMLCodingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"XMLCoding::XMLDocument::Product" /* XMLDocument.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XMLDocument.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"XMLCoding::XMLDocumentTests::Product" /* XMLDocumentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = XMLDocumentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"XMLCoding::XMLFormatter::Product" /* XMLFormatter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XMLFormatter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"XMLCoding::XMLFormatterTests::Product" /* XMLFormatterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = XMLFormatterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"XMLCoding::XMLReader::Product" /* XMLReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XMLReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"XMLCoding::XMLReaderTests::Product" /* XMLReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = XMLReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"XMLCoding::XMLWriter::Product" /* XMLWriter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = XMLWriter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"XMLCoding::XMLWriterTests::Product" /* XMLWriterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = XMLWriterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		OBJ_134 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_135 /* XMLFormatter.framework in Frameworks */,
+				OBJ_136 /* XMLWriter.framework in Frameworks */,
+				OBJ_137 /* XMLReader.framework in Frameworks */,
+				OBJ_138 /* XMLDocument.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_182 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_183 /* XMLCoding.framework in Frameworks */,
+				OBJ_184 /* XMLFormatter.framework in Frameworks */,
+				OBJ_185 /* XMLWriter.framework in Frameworks */,
+				OBJ_186 /* XMLReader.framework in Frameworks */,
+				OBJ_187 /* XMLDocument.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_207 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_217 /* XMLDocument.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_232 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_255 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_256 /* XMLFormatter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_264 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_265 /* XMLDocument.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_272 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_273 /* XMLReader.framework in Frameworks */,
+				OBJ_274 /* XMLDocument.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_284 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_285 /* XMLDocument.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_292 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_293 /* XMLWriter.framework in Frameworks */,
+				OBJ_294 /* XMLDocument.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CA58EEBC237AD50800A807ED /* Auxiliary */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_58 /* EncodingTestCase.swift */,
+				BF3F68ED21EC9FCA00F6D00B /* XMLCoding+Utilities.swift */,
+			);
+			path = Auxiliary;
+			sourceTree = "<group>";
+		};
+		CA58EEC5237B0B2600A807ED /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				CA58EEC6237B0B3000A807ED /* NestedTests.swift */,
+			);
+			path = Containers;
+			sourceTree = "<group>";
+		};
+		OBJ_100 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				"XMLCoding::XMLFormatter::Product" /* XMLFormatter.framework */,
+				"XMLCoding::XMLWriter::Product" /* XMLWriter.framework */,
+				"XMLCoding::XMLReader::Product" /* XMLReader.framework */,
+				"XMLCoding::XMLCoding::Product" /* XMLCoding.framework */,
+				"XMLCoding::XMLWriterTests::Product" /* XMLWriterTests.xctest */,
+				"XMLCoding::XMLDocumentTests::Product" /* XMLDocumentTests.xctest */,
+				"XMLCoding::XMLDocument::Product" /* XMLDocument.framework */,
+				"XMLCoding::XMLFormatterTests::Product" /* XMLFormatterTests.xctest */,
+				"XMLCoding::XMLReaderTests::Product" /* XMLReaderTests.xctest */,
+				"XMLCoding::XMLCodingTests::Product" /* XMLCodingTests.xctest */,
+			);
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		OBJ_11 /* XMLEncoding */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_12 /* EncodingError+Extensions.swift */,
+				BF8221D721E9FC7B008CAF19 /* XMLEncodingKey.swift */,
+				OBJ_13 /* XMLDataEncodingStrategy.swift */,
+				OBJ_14 /* XMLDateEncodingStrategy.swift */,
+				OBJ_15 /* XMLEncoder.swift */,
+				BF8221DB21EA35D9008CAF19 /* XMLElementNode+Extensions.swift */,
+				OBJ_16 /* XMLEncodingStorage.swift */,
+				CA4BD8AE2DD4A6ED005D3A47 /* XMLInternalCodingKey.swift */,
+				OBJ_17 /* XMLInternalEncoder.swift */,
+				OBJ_18 /* XMLKeyEncodingStrategy.swift */,
+				OBJ_19 /* XMLKeyedEncodingContainer.swift */,
+				OBJ_20 /* XMLNodeEncoding.swift */,
+				CA58EEBA237AD3B400A807ED /* XMLNodeEncodable.swift */,
+				OBJ_21 /* XMLNodeEncodingStrategy.swift */,
+				OBJ_22 /* XMLNonConformingFloatEncodingStrategy.swift */,
+				OBJ_23 /* XMLOutputFormatting.swift */,
+				OBJ_24 /* XMLReferencingEncoder.swift */,
+				OBJ_25 /* XMLSingleValueEncodingContainer.swift */,
+				OBJ_26 /* XMLStringEncodingStrategy.swift */,
+				OBJ_27 /* XMLUnkeyedEncodingContainer.swift */,
+			);
+			path = XMLEncoding;
+			sourceTree = "<group>";
+		};
+		OBJ_28 /* XMLWriter */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_29 /* String+Extensions.swift */,
+				OBJ_30 /* XMLWriter+XMLVisitor.swift */,
+				OBJ_31 /* XMLWriter.swift */,
+			);
+			name = XMLWriter;
+			path = Sources/XMLWriter;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_32 /* XMLFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_33 /* XMLBoolFormatter.swift */,
+				OBJ_34 /* XMLDataFormatter.swift */,
+				OBJ_35 /* XMLDateFormatter.swift */,
+				OBJ_36 /* XMLDecimalFormatter.swift */,
+				OBJ_37 /* XMLFloatingPointFormatter.swift */,
+				OBJ_38 /* XMLFormatter.swift */,
+				OBJ_39 /* XMLIntegerFormatter.swift */,
+				OBJ_40 /* XMLStringFormatter.swift */,
+				OBJ_41 /* XMLURLFormatter.swift */,
+			);
+			name = XMLFormatter;
+			path = Sources/XMLFormatter;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_42 /* XMLDocument */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_43 /* XMLComplexContent.swift */,
+				OBJ_44 /* XMLDocumentHeader.swift */,
+				OBJ_45 /* XMLDocumentNode.swift */,
+				OBJ_46 /* XMLElementNode.swift */,
+				OBJ_47 /* XMLElementNodeContent.swift */,
+				OBJ_48 /* XMLEmptyContent.swift */,
+				OBJ_49 /* XMLMixedContent.swift */,
+				OBJ_50 /* XMLProcessingInstruction.swift */,
+				OBJ_51 /* XMLSimpleContent.swift */,
+				OBJ_52 /* XMLVisitor.swift */,
+			);
+			name = XMLDocument;
+			path = Sources/XMLDocument;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_5 = {
+			isa = PBXGroup;
+			children = (
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Sources */,
+				OBJ_56 /* Tests */,
+				OBJ_100 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		OBJ_53 /* XMLReader */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_54 /* XMLParser+Extensions.swift */,
+				OBJ_55 /* XMLReader.swift */,
+			);
+			name = XMLReader;
+			path = Sources/XMLReader;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_56 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_57 /* XMLCodingTests */,
+				OBJ_70 /* XMLDocumentTests */,
+				OBJ_75 /* XMLWriterTests */,
+				OBJ_77 /* XMLFormatterTests */,
+				OBJ_98 /* XMLReaderTests */,
+			);
+			name = Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_57 /* XMLCodingTests */ = {
+			isa = PBXGroup;
+			children = (
+				CA58EEBC237AD50800A807ED /* Auxiliary */,
+				BF3F68F121ECC43200F6D00B /* XMLCodingKeyTests.swift */,
+				BF3F68EB21EC983400F6D00B /* EncodingCodingPathTests.swift */,
+				OBJ_59 /* Minimal */,
+				OBJ_69 /* XCTestManifests.swift */,
+				BF8221D521E9F09F008CAF19 /* NestedTests.swift */,
+				CA58EEC5237B0B2600A807ED /* Containers */,
+			);
+			name = XMLCodingTests;
+			path = Tests/XMLCodingTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_59 /* Minimal */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_60 /* BoolTests.swift */,
+				OBJ_61 /* DataTests.swift */,
+				OBJ_62 /* DateTests.swift */,
+				OBJ_63 /* DecimalTests.swift */,
+				OBJ_64 /* FloatTests.swift */,
+				OBJ_65 /* IntTests.swift */,
+				OBJ_66 /* StringTests.swift */,
+				OBJ_67 /* UIntTests.swift */,
+				OBJ_68 /* URLTests.swift */,
+				BF3F68F321ECCD9E00F6D00B /* EmptyTests.swift */,
+			);
+			path = Minimal;
+			sourceTree = "<group>";
+		};
+		OBJ_7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_8 /* XMLCoding */,
+				OBJ_28 /* XMLWriter */,
+				OBJ_32 /* XMLFormatter */,
+				OBJ_42 /* XMLDocument */,
+				OBJ_53 /* XMLReader */,
+			);
+			name = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_70 /* XMLDocumentTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_71 /* XMLElementNodeContentTests.swift */,
+				OBJ_72 /* XMLElementNodeTests.swift */,
+				OBJ_73 /* XMLMixedContentItemTests.swift */,
+				OBJ_74 /* XMLSimpleContentTests.swift */,
+			);
+			name = XMLDocumentTests;
+			path = Tests/XMLDocumentTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_75 /* XMLWriterTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_76 /* XMLWriterTests.swift */,
+			);
+			name = XMLWriterTests;
+			path = Tests/XMLWriterTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_77 /* XMLFormatterTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_78 /* XMLBoolFormatterTests.swift */,
+				OBJ_79 /* XMLDataFormatterTests.swift */,
+				OBJ_80 /* XMLDateFormatterTests.swift */,
+				OBJ_81 /* XMLDecimalFormatterTests.swift */,
+				OBJ_82 /* XMLFloatingPointFormatterTests */,
+				OBJ_85 /* XMLIntegerFormatterTests */,
+				OBJ_96 /* XMLStringFormatterTests.swift */,
+				OBJ_97 /* XMLURLFormatterTests.swift */,
+				BF3F68EF21ECC0E900F6D00B /* XMLFormatterTests.swift */,
+			);
+			name = XMLFormatterTests;
+			path = Tests/XMLFormatterTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_8 /* XMLCoding */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_11 /* XMLEncoding */,
+			);
+			name = XMLCoding;
+			path = Sources/XMLCoding;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_82 /* XMLFloatingPointFormatterTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_83 /* XMLDoubleFormatterTests.swift */,
+				OBJ_84 /* XMLFloatFormatterTests.swift */,
+			);
+			path = XMLFloatingPointFormatterTests;
+			sourceTree = "<group>";
+		};
+		OBJ_85 /* XMLIntegerFormatterTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_86 /* XMLInt16FormatterTests.swift */,
+				OBJ_87 /* XMLInt32FormatterTests.swift */,
+				OBJ_88 /* XMLInt64FormatterTests.swift */,
+				OBJ_89 /* XMLInt8FormatterTests.swift */,
+				OBJ_90 /* XMLIntFormatterTests.swift */,
+				OBJ_91 /* XMLUInt16FormatterTests.swift */,
+				OBJ_92 /* XMLUInt32FormatterTests.swift */,
+				OBJ_93 /* XMLUInt64FormatterTests.swift */,
+				OBJ_94 /* XMLUInt8FormatterTests.swift */,
+				OBJ_95 /* XMLUIntFormatterTests.swift */,
+			);
+			path = XMLIntegerFormatterTests;
+			sourceTree = "<group>";
+		};
+		OBJ_98 /* XMLReaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_99 /* XMLReaderTests.swift */,
+			);
+			name = XMLReaderTests;
+			path = Tests/XMLReaderTests;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		"XMLCoding::SwiftPMPackageDescription" /* XMLCodingPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_148 /* Build configuration list for PBXNativeTarget "XMLCodingPackageDescription" */;
+			buildPhases = (
+				OBJ_151 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XMLCodingPackageDescription;
+			productName = XMLCodingPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+		"XMLCoding::XMLCoding" /* XMLCoding */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_112 /* Build configuration list for PBXNativeTarget "XMLCoding" */;
+			buildPhases = (
+				OBJ_115 /* Sources */,
+				OBJ_134 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_139 /* PBXTargetDependency */,
+				OBJ_141 /* PBXTargetDependency */,
+				OBJ_143 /* PBXTargetDependency */,
+				OBJ_145 /* PBXTargetDependency */,
+			);
+			name = XMLCoding;
+			productName = XMLCoding;
+			productReference = "XMLCoding::XMLCoding::Product" /* XMLCoding.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"XMLCoding::XMLCodingTests" /* XMLCodingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_167 /* Build configuration list for PBXNativeTarget "XMLCodingTests" */;
+			buildPhases = (
+				OBJ_170 /* Sources */,
+				OBJ_182 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_188 /* PBXTargetDependency */,
+				OBJ_189 /* PBXTargetDependency */,
+				OBJ_190 /* PBXTargetDependency */,
+				OBJ_191 /* PBXTargetDependency */,
+				OBJ_192 /* PBXTargetDependency */,
+			);
+			name = XMLCodingTests;
+			productName = XMLCodingTests;
+			productReference = "XMLCoding::XMLCodingTests::Product" /* XMLCodingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"XMLCoding::XMLDocument" /* XMLDocument */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_193 /* Build configuration list for PBXNativeTarget "XMLDocument" */;
+			buildPhases = (
+				OBJ_196 /* Sources */,
+				OBJ_207 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XMLDocument;
+			productName = XMLDocument;
+			productReference = "XMLCoding::XMLDocument::Product" /* XMLDocument.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"XMLCoding::XMLDocumentTests" /* XMLDocumentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_208 /* Build configuration list for PBXNativeTarget "XMLDocumentTests" */;
+			buildPhases = (
+				OBJ_211 /* Sources */,
+				OBJ_216 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_218 /* PBXTargetDependency */,
+			);
+			name = XMLDocumentTests;
+			productName = XMLDocumentTests;
+			productReference = "XMLCoding::XMLDocumentTests::Product" /* XMLDocumentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"XMLCoding::XMLFormatter" /* XMLFormatter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_219 /* Build configuration list for PBXNativeTarget "XMLFormatter" */;
+			buildPhases = (
+				OBJ_222 /* Sources */,
+				OBJ_232 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XMLFormatter;
+			productName = XMLFormatter;
+			productReference = "XMLCoding::XMLFormatter::Product" /* XMLFormatter.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"XMLCoding::XMLFormatterTests" /* XMLFormatterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_233 /* Build configuration list for PBXNativeTarget "XMLFormatterTests" */;
+			buildPhases = (
+				OBJ_236 /* Sources */,
+				OBJ_255 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_257 /* PBXTargetDependency */,
+			);
+			name = XMLFormatterTests;
+			productName = XMLFormatterTests;
+			productReference = "XMLCoding::XMLFormatterTests::Product" /* XMLFormatterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"XMLCoding::XMLReader" /* XMLReader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_258 /* Build configuration list for PBXNativeTarget "XMLReader" */;
+			buildPhases = (
+				OBJ_261 /* Sources */,
+				OBJ_264 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_266 /* PBXTargetDependency */,
+			);
+			name = XMLReader;
+			productName = XMLReader;
+			productReference = "XMLCoding::XMLReader::Product" /* XMLReader.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"XMLCoding::XMLReaderTests" /* XMLReaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_267 /* Build configuration list for PBXNativeTarget "XMLReaderTests" */;
+			buildPhases = (
+				OBJ_270 /* Sources */,
+				OBJ_272 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_275 /* PBXTargetDependency */,
+				OBJ_276 /* PBXTargetDependency */,
+			);
+			name = XMLReaderTests;
+			productName = XMLReaderTests;
+			productReference = "XMLCoding::XMLReaderTests::Product" /* XMLReaderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"XMLCoding::XMLWriter" /* XMLWriter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_277 /* Build configuration list for PBXNativeTarget "XMLWriter" */;
+			buildPhases = (
+				OBJ_280 /* Sources */,
+				OBJ_284 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_286 /* PBXTargetDependency */,
+			);
+			name = XMLWriter;
+			productName = XMLWriter;
+			productReference = "XMLCoding::XMLWriter::Product" /* XMLWriter.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"XMLCoding::XMLWriterTests" /* XMLWriterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_287 /* Build configuration list for PBXNativeTarget "XMLWriterTests" */;
+			buildPhases = (
+				OBJ_290 /* Sources */,
+				OBJ_292 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_295 /* PBXTargetDependency */,
+				OBJ_296 /* PBXTargetDependency */,
+			);
+			name = XMLWriterTests;
+			productName = XMLWriterTests;
+			productReference = "XMLCoding::XMLWriterTests::Product" /* XMLWriterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		OBJ_1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 9999;
+			};
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "XMLCoding" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+			);
+			mainGroup = OBJ_5;
+			productRefGroup = OBJ_100 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"XMLCoding::XMLCoding" /* XMLCoding */,
+				"XMLCoding::SwiftPMPackageDescription" /* XMLCodingPackageDescription */,
+				"XMLCoding::XMLCodingPackageTests::ProductTarget" /* XMLCodingPackageTests */,
+				"XMLCoding::XMLCodingTests" /* XMLCodingTests */,
+				"XMLCoding::XMLDocument" /* XMLDocument */,
+				"XMLCoding::XMLDocumentTests" /* XMLDocumentTests */,
+				"XMLCoding::XMLFormatter" /* XMLFormatter */,
+				"XMLCoding::XMLFormatterTests" /* XMLFormatterTests */,
+				"XMLCoding::XMLReader" /* XMLReader */,
+				"XMLCoding::XMLReaderTests" /* XMLReaderTests */,
+				"XMLCoding::XMLWriter" /* XMLWriter */,
+				"XMLCoding::XMLWriterTests" /* XMLWriterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		OBJ_115 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_118 /* EncodingError+Extensions.swift in Sources */,
+				OBJ_119 /* XMLDataEncodingStrategy.swift in Sources */,
+				OBJ_120 /* XMLDateEncodingStrategy.swift in Sources */,
+				OBJ_121 /* XMLEncoder.swift in Sources */,
+				BF8221D821E9FC7B008CAF19 /* XMLEncodingKey.swift in Sources */,
+				OBJ_122 /* XMLEncodingStorage.swift in Sources */,
+				OBJ_123 /* XMLInternalEncoder.swift in Sources */,
+				OBJ_124 /* XMLKeyEncodingStrategy.swift in Sources */,
+				CA4BD8AF2DD4A6ED005D3A47 /* XMLInternalCodingKey.swift in Sources */,
+				OBJ_125 /* XMLKeyedEncodingContainer.swift in Sources */,
+				OBJ_126 /* XMLNodeEncoding.swift in Sources */,
+				OBJ_127 /* XMLNodeEncodingStrategy.swift in Sources */,
+				CA58EEBB237AD3B400A807ED /* XMLNodeEncodable.swift in Sources */,
+				OBJ_128 /* XMLNonConformingFloatEncodingStrategy.swift in Sources */,
+				BF8221DC21EA35D9008CAF19 /* XMLElementNode+Extensions.swift in Sources */,
+				OBJ_129 /* XMLOutputFormatting.swift in Sources */,
+				OBJ_130 /* XMLReferencingEncoder.swift in Sources */,
+				OBJ_131 /* XMLSingleValueEncodingContainer.swift in Sources */,
+				OBJ_132 /* XMLStringEncodingStrategy.swift in Sources */,
+				OBJ_133 /* XMLUnkeyedEncodingContainer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_151 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_152 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_170 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_171 /* EncodingTestCase.swift in Sources */,
+				BF3F68EC21EC983400F6D00B /* EncodingCodingPathTests.swift in Sources */,
+				OBJ_172 /* BoolTests.swift in Sources */,
+				OBJ_173 /* DataTests.swift in Sources */,
+				OBJ_174 /* DateTests.swift in Sources */,
+				OBJ_175 /* DecimalTests.swift in Sources */,
+				BF3F68EE21EC9FCA00F6D00B /* XMLCoding+Utilities.swift in Sources */,
+				OBJ_176 /* FloatTests.swift in Sources */,
+				BF8221D621E9F09F008CAF19 /* NestedTests.swift in Sources */,
+				OBJ_177 /* IntTests.swift in Sources */,
+				OBJ_178 /* StringTests.swift in Sources */,
+				BF3F68F221ECC43200F6D00B /* XMLCodingKeyTests.swift in Sources */,
+				OBJ_179 /* UIntTests.swift in Sources */,
+				BF3F68F421ECCD9E00F6D00B /* EmptyTests.swift in Sources */,
+				OBJ_180 /* URLTests.swift in Sources */,
+				OBJ_181 /* XCTestManifests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_196 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_197 /* XMLComplexContent.swift in Sources */,
+				OBJ_198 /* XMLDocumentHeader.swift in Sources */,
+				OBJ_199 /* XMLDocumentNode.swift in Sources */,
+				OBJ_200 /* XMLElementNode.swift in Sources */,
+				OBJ_201 /* XMLElementNodeContent.swift in Sources */,
+				OBJ_202 /* XMLEmptyContent.swift in Sources */,
+				OBJ_203 /* XMLMixedContent.swift in Sources */,
+				OBJ_204 /* XMLProcessingInstruction.swift in Sources */,
+				OBJ_205 /* XMLSimpleContent.swift in Sources */,
+				OBJ_206 /* XMLVisitor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_211 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_212 /* XMLElementNodeContentTests.swift in Sources */,
+				OBJ_213 /* XMLElementNodeTests.swift in Sources */,
+				OBJ_214 /* XMLMixedContentItemTests.swift in Sources */,
+				OBJ_215 /* XMLSimpleContentTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_222 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_223 /* XMLBoolFormatter.swift in Sources */,
+				OBJ_224 /* XMLDataFormatter.swift in Sources */,
+				OBJ_225 /* XMLDateFormatter.swift in Sources */,
+				OBJ_226 /* XMLDecimalFormatter.swift in Sources */,
+				OBJ_227 /* XMLFloatingPointFormatter.swift in Sources */,
+				OBJ_228 /* XMLFormatter.swift in Sources */,
+				OBJ_229 /* XMLIntegerFormatter.swift in Sources */,
+				OBJ_230 /* XMLStringFormatter.swift in Sources */,
+				OBJ_231 /* XMLURLFormatter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_236 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_237 /* XMLBoolFormatterTests.swift in Sources */,
+				OBJ_238 /* XMLDataFormatterTests.swift in Sources */,
+				OBJ_239 /* XMLDateFormatterTests.swift in Sources */,
+				OBJ_240 /* XMLDecimalFormatterTests.swift in Sources */,
+				OBJ_241 /* XMLDoubleFormatterTests.swift in Sources */,
+				OBJ_242 /* XMLFloatFormatterTests.swift in Sources */,
+				OBJ_243 /* XMLInt16FormatterTests.swift in Sources */,
+				OBJ_244 /* XMLInt32FormatterTests.swift in Sources */,
+				OBJ_245 /* XMLInt64FormatterTests.swift in Sources */,
+				OBJ_246 /* XMLInt8FormatterTests.swift in Sources */,
+				OBJ_247 /* XMLIntFormatterTests.swift in Sources */,
+				OBJ_248 /* XMLUInt16FormatterTests.swift in Sources */,
+				OBJ_249 /* XMLUInt32FormatterTests.swift in Sources */,
+				BF3F68F021ECC0E900F6D00B /* XMLFormatterTests.swift in Sources */,
+				OBJ_250 /* XMLUInt64FormatterTests.swift in Sources */,
+				OBJ_251 /* XMLUInt8FormatterTests.swift in Sources */,
+				OBJ_252 /* XMLUIntFormatterTests.swift in Sources */,
+				OBJ_253 /* XMLStringFormatterTests.swift in Sources */,
+				OBJ_254 /* XMLURLFormatterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_261 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_262 /* XMLParser+Extensions.swift in Sources */,
+				OBJ_263 /* XMLReader.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_270 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_271 /* XMLReaderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_280 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_281 /* String+Extensions.swift in Sources */,
+				OBJ_282 /* XMLWriter+XMLVisitor.swift in Sources */,
+				OBJ_283 /* XMLWriter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_290 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_291 /* XMLWriterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		OBJ_139 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLFormatter" /* XMLFormatter */;
+			targetProxy = BF8221C121E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_141 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLWriter" /* XMLWriter */;
+			targetProxy = BF8221C221E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_143 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLReader" /* XMLReader */;
+			targetProxy = BF8221C321E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_145 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLDocument" /* XMLDocument */;
+			targetProxy = BF8221C421E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_157 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLReaderTests" /* XMLReaderTests */;
+			targetProxy = BF8221D021E8A3B0008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_159 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLFormatterTests" /* XMLFormatterTests */;
+			targetProxy = BF8221D121E8A3B0008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_161 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLWriterTests" /* XMLWriterTests */;
+			targetProxy = BF8221D221E8A3B0008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_163 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLCodingTests" /* XMLCodingTests */;
+			targetProxy = BF8221D321E8A3B0008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_165 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLDocumentTests" /* XMLDocumentTests */;
+			targetProxy = BF8221D421E8A3B0008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_188 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLCoding" /* XMLCoding */;
+			targetProxy = BF8221C721E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_189 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLFormatter" /* XMLFormatter */;
+			targetProxy = BF8221C821E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_190 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLWriter" /* XMLWriter */;
+			targetProxy = BF8221C921E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_191 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLReader" /* XMLReader */;
+			targetProxy = BF8221CA21E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_192 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLDocument" /* XMLDocument */;
+			targetProxy = BF8221CB21E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_218 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLDocument" /* XMLDocument */;
+			targetProxy = BF8221CC21E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_257 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLFormatter" /* XMLFormatter */;
+			targetProxy = BF8221CF21E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_266 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLDocument" /* XMLDocument */;
+			targetProxy = BF8221BF21E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_275 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLReader" /* XMLReader */;
+			targetProxy = BF8221CD21E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_276 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLDocument" /* XMLDocument */;
+			targetProxy = BF8221CE21E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_286 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLDocument" /* XMLDocument */;
+			targetProxy = BF8221C021E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_295 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLWriter" /* XMLWriter */;
+			targetProxy = BF8221C521E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+		OBJ_296 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "XMLCoding::XMLDocument" /* XMLDocument */;
+			targetProxy = BF8221C621E8A3AF008CAF19 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		OBJ_113 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLCoding_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = XMLCoding;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLCoding;
+			};
+			name = Debug;
+		};
+		OBJ_114 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLCoding_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = XMLCoding;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLCoding;
+			};
+			name = Release;
+		};
+		OBJ_149 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		OBJ_150 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		OBJ_155 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		OBJ_156 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		OBJ_168 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLCodingTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLCodingTests;
+			};
+			name = Debug;
+		};
+		OBJ_169 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLCodingTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLCodingTests;
+			};
+			name = Release;
+		};
+		OBJ_194 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLDocument_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = XMLDocument;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLDocument;
+			};
+			name = Debug;
+		};
+		OBJ_195 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLDocument_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = XMLDocument;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLDocument;
+			};
+			name = Release;
+		};
+		OBJ_209 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLDocumentTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLDocumentTests;
+			};
+			name = Debug;
+		};
+		OBJ_210 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLDocumentTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLDocumentTests;
+			};
+			name = Release;
+		};
+		OBJ_220 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLFormatter_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = XMLFormatter;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLFormatter;
+			};
+			name = Debug;
+		};
+		OBJ_221 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLFormatter_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = XMLFormatter;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLFormatter;
+			};
+			name = Release;
+		};
+		OBJ_234 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLFormatterTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLFormatterTests;
+			};
+			name = Debug;
+		};
+		OBJ_235 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLFormatterTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLFormatterTests;
+			};
+			name = Release;
+		};
+		OBJ_259 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLReader_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = XMLReader;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLReader;
+			};
+			name = Debug;
+		};
+		OBJ_260 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLReader_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = XMLReader;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLReader;
+			};
+			name = Release;
+		};
+		OBJ_268 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLReaderTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLReaderTests;
+			};
+			name = Debug;
+		};
+		OBJ_269 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLReaderTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLReaderTests;
+			};
+			name = Release;
+		};
+		OBJ_278 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLWriter_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = XMLWriter;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLWriter;
+			};
+			name = Debug;
+		};
+		OBJ_279 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLWriter_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = XMLWriter;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLWriter;
+			};
+			name = Release;
+		};
+		OBJ_288 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLWriterTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLWriterTests;
+			};
+			name = Debug;
+		};
+		OBJ_289 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = XMLCoding.xcodeproj/XMLWriterTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = XMLWriterTests;
+			};
+			name = Release;
+		};
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "SWIFT_PACKAGE DEBUG";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				USE_HEADERMAP = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		OBJ_112 /* Build configuration list for PBXNativeTarget "XMLCoding" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_113 /* Debug */,
+				OBJ_114 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_148 /* Build configuration list for PBXNativeTarget "XMLCodingPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_149 /* Debug */,
+				OBJ_150 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_154 /* Build configuration list for PBXAggregateTarget "XMLCodingPackageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_155 /* Debug */,
+				OBJ_156 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_167 /* Build configuration list for PBXNativeTarget "XMLCodingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_168 /* Debug */,
+				OBJ_169 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_193 /* Build configuration list for PBXNativeTarget "XMLDocument" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_194 /* Debug */,
+				OBJ_195 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_2 /* Build configuration list for PBXProject "XMLCoding" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_208 /* Build configuration list for PBXNativeTarget "XMLDocumentTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_209 /* Debug */,
+				OBJ_210 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_219 /* Build configuration list for PBXNativeTarget "XMLFormatter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_220 /* Debug */,
+				OBJ_221 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_233 /* Build configuration list for PBXNativeTarget "XMLFormatterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_234 /* Debug */,
+				OBJ_235 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_258 /* Build configuration list for PBXNativeTarget "XMLReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_259 /* Debug */,
+				OBJ_260 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_267 /* Build configuration list for PBXNativeTarget "XMLReaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_268 /* Debug */,
+				OBJ_269 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_277 /* Build configuration list for PBXNativeTarget "XMLWriter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_278 /* Debug */,
+				OBJ_279 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_287 /* Build configuration list for PBXNativeTarget "XMLWriterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_288 /* Debug */,
+				OBJ_289 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = OBJ_1 /* Project object */;
+}

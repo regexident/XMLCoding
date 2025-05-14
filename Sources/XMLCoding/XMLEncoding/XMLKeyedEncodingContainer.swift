@@ -30,9 +30,9 @@ struct XMLKeyedEncodingContainer<K: CodingKey>: KeyedEncodingContainerProtocol {
     }
     
     public mutating func encodeNil(forKey key: Key) throws {
-        let name = self.encoder.resolve(encodingKey: key)
-        let element = XMLElementNode.empty(name: name)
-        self.container.append(element: element)
+        return try self.encodeNil(forKey: key) { encoder, key in
+            try encoder.boxNil(forKey: key)
+        }
     }
     
     public mutating func encode(_ value: Bool, forKey key: Key) throws {
@@ -82,7 +82,18 @@ struct XMLKeyedEncodingContainer<K: CodingKey>: KeyedEncodingContainerProtocol {
             try encoder.box(encodable: value, forKey: key)
         }
     }
-    
+
+    private mutating func encodeNil(
+        forKey key: Key,
+        encode: (XMLInternalEncoder, CodingKey) throws -> XMLElementNode
+    ) throws {
+        let element = try self.encoder.with(codingPath: self.codingPath) { encoder in
+            try encode(encoder, key)
+        }
+
+        self.container.append(element: element)
+    }
+
     private mutating func encode<T: Encodable>(
         _ value: T,
         forKey key: Key,
@@ -124,6 +135,8 @@ struct XMLKeyedEncodingContainer<K: CodingKey>: KeyedEncodingContainerProtocol {
         keyedBy _: NestedKey.Type,
         forKey codingKey: Key
     ) -> KeyedEncodingContainer<NestedKey> {
+        print("📦: \(#function), key: \(Key.self)")
+
         var codingPath = self.codingPath
         codingPath.append(codingKey)
         
@@ -147,25 +160,16 @@ struct XMLKeyedEncodingContainer<K: CodingKey>: KeyedEncodingContainerProtocol {
     public mutating func nestedUnkeyedContainer(
         forKey codingKey: Key
     ) -> UnkeyedEncodingContainer {
+        print("📦: \(#function)")
+        
         var codingPath = self.codingPath
         codingPath.append(codingKey)
-        
-        let keyEncodingStrategy = self.encoder.options.keyEncodingStrategy
-        
-        let encodingKey = XMLEncodingKey(
-            key: codingKey,
-            at: codingPath,
-            keyEncodingStrategy: keyEncodingStrategy
-        )
-        
-        let container = XMLElementNode.empty(name: encodingKey.xmlKey)
-        self.container.append(element: container)
         
         return XMLUnkeyedEncodingContainer(
             key: codingKey,
             referencing: self.encoder,
             codingPath: codingPath,
-            wrapping: container
+            wrapping: self.container
         )
     }
     

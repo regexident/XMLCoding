@@ -3,8 +3,8 @@ import Foundation
 import XMLDocument
 import XMLFormatter
 
-internal class XMLInternalEncoder: Encoder {
-    internal typealias Container = XMLEncodingStorage.Container
+class XMLInternalEncoder: Encoder {
+    typealias Container = XMLEncodingStorage.Container
     
     /// The encoded document's root key.
     private let rootKey: CodingKey
@@ -13,24 +13,20 @@ internal class XMLInternalEncoder: Encoder {
     private var storage: XMLEncodingStorage
     
     /// Options set on the top-level encoder.
-    internal let options: XMLEncoder._Options
+    let options: XMLEncoder._Options
     
     /// The path to the current point in encoding.
-    public var codingPath: [CodingKey]
-//    {
-//        didSet {
-//            let before = oldValue.map { $0.stringValue }.joined(separator: ".")
-//            let after = self.codingPath.map { $0.stringValue }.joined(separator: ".")
-//            if oldValue.count < self.codingPath.count {
-//                print("🔶: \"\(before)\" -> \"\(after)\"")
-//            } else {
-//                print("🔶: \"\(before)\" -> \"\(after)\"")
-//            }
-//            if oldValue.last?.stringValue == self.codingPath.last?.stringValue {
-//                print("🔶 !!!")
-//            }
-//        }
-//    }
+    public var codingPath: [CodingKey] {
+        didSet {
+            let old = oldValue.map { "\(StringConvertibleCodingKey($0))" }.joined(separator: ".")
+            let new = self.codingPath.map { "\(StringConvertibleCodingKey($0))" }.joined(separator: ".")
+            print("⚠️", "\"\(old)\"", "->", "\"\(new)\"")
+        }
+    }
+
+    var currentCodingKey: CodingKey {
+        return self.codingPath.last ?? self.rootKey
+    }
     
     public var nodeEncodings: [(CodingKey) -> XMLEncoder.NodeEncoding]
     
@@ -39,12 +35,12 @@ internal class XMLInternalEncoder: Encoder {
         return self.options.userInfo
     }
     
-    internal var containerStackCount: Int {
+    var containerStackCount: Int {
         return self.storage.count
     }
     
     /// Initializes `self` with the given top-level encoder options.
-    internal init(
+    init(
         rootKey: CodingKey,
         options: XMLEncoder._Options,
         nodeEncodings: [(CodingKey) -> XMLEncoder.NodeEncoding],
@@ -56,8 +52,21 @@ internal class XMLInternalEncoder: Encoder {
         self.codingPath = codingPath
         self.nodeEncodings = nodeEncodings
     }
+
+    private func withCodingPath<T>(
+        appending codingKey: CodingKey,
+        _ closure: () throws -> T
+    ) rethrows -> T {
+        self.codingPath.append(codingKey)
+        defer {
+            // Reset to previous value when done:
+            self.codingPath.removeLast()
+        }
+
+        return try closure()
+    }
     
-    internal func with<T>(codingPath: [CodingKey], _ closure: (XMLInternalEncoder) throws -> T) rethrows -> T {
+    func with<T>(codingPath: [CodingKey], _ closure: (XMLInternalEncoder) throws -> T) rethrows -> T {
         let previousCodingPath = self.codingPath
         defer {
             // Reset to previous value when done:
@@ -67,7 +76,7 @@ internal class XMLInternalEncoder: Encoder {
         return try closure(self)
     }
     
-    internal func resolve(encodingKey codingKey: CodingKey) -> String {
+    func resolve(encodingKey codingKey: CodingKey) -> String {
         let encodingKey = XMLEncodingKey(
             key: codingKey,
             at: self.codingPath,
@@ -77,18 +86,18 @@ internal class XMLInternalEncoder: Encoder {
         return encodingKey.xmlKey
     }
     
-    internal func push(container: Container) {
+    func push(container: Container) {
         self.storage.push(container: container)
     }
     
-    internal func popContainer() -> Container? {
+    func popContainer() -> Container? {
         return self.storage.popContainer()
     }
     
     /// Returns whether a new element can be encoded at this coding path.
     ///
     /// `true` if an element has not yet been encoded at this coding path; `false` otherwise.
-    internal var canEncodeNewValue: Bool {
+    var canEncodeNewValue: Bool {
         // Encodable:
         
         // Every time a new value gets encoded, the key it's encoded for is pushed onto the coding path (even if it's a nil key from an unkeyed container).
@@ -103,11 +112,15 @@ internal class XMLInternalEncoder: Encoder {
         // Every XML node has a name. Even the root node, which is not part of the coding path:
         // As such we subtract `1` from `self.storage.count`, when comparing:
         
-        return (self.storage.count - 1) <= self.codingPath.count
+//        return (self.storage.count - 1) <= self.codingPath.count
+
+        return true
     }
     
     public func container<Key>(keyedBy _: Key.Type) -> KeyedEncodingContainer<Key> {
-        let codingKey = self.codingPath.last ?? self.rootKey
+        print("📦: \(#function), key: \(Key.self)")
+
+        let codingKey = self.currentCodingKey
         let name = self.resolve(encodingKey: codingKey)
         let container = XMLElementNode.empty(name: name)
         self.storage.push(container: container)
@@ -120,29 +133,46 @@ internal class XMLInternalEncoder: Encoder {
     }
     
     public func unkeyedContainer() -> UnkeyedEncodingContainer {
-        let codingKey = self.codingPath.last ?? self.rootKey
-        let name = self.resolve(encodingKey: codingKey)
-        let container = XMLElementNode.empty(name: name)
-        self.storage.push(container: container)
-        
-        guard let topContainer = self.storage.lastContainer else {
+        print("📦: \(#function)")
+
+        let codingKey = self.currentCodingKey
+
+        guard let container = self.storage.lastContainer else {
             preconditionFailure("Attempt to push new keyed encoding container when already previously encoded at this path.")
         }
-        
+
         return XMLUnkeyedEncodingContainer(
-            key: self.codingPath.last!,
+            key: codingKey,
             referencing: self,
             codingPath: self.codingPath,
-            wrapping: topContainer
+            wrapping: container
         )
     }
     
     public func singleValueContainer() -> SingleValueEncodingContainer {
+        print("📦: \(#function)")
+
+        guard let container = self.storage.lastContainer else {
+            preconditionFailure("Attempt to push new single value encoding container when already previously encoded at this path.")
+        }
+
         return XMLSingleValueEncodingContainer(
-            key: self.codingPath.last ?? self.rootKey,
+            key: self.currentCodingKey,
             referencing: self,
-            codingPath: self.codingPath
+            codingPath: self.codingPath,
+            wrapping: container
         )
+
+//        let codingKey = self.currentCodingKey
+//        let name = self.resolve(encodingKey: codingKey)
+//        let container = XMLElementNode.empty(name: name)
+//        self.storage.push(container: container)
+//
+//        return XMLSingleValueEncodingContainer(
+//            key: self.currentCodingKey,
+//            referencing: self,
+//            codingPath: self.codingPath
+//        )
     }
 }
 
@@ -150,20 +180,34 @@ internal class XMLInternalEncoder: Encoder {
 
 extension XMLInternalEncoder {
     // MARK: - Public:
-    
-    internal func box(null: (), forKey key: CodingKey) throws -> XMLElementNode {
-        self.codingPath.append(key)
-        defer { self.codingPath.removeLast() }
-        
+
+    func boxNil(forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: <()>, key: \"\(StringConvertibleCodingKey(key))\"")
+
+        return try self.withCodingPath(appending: key) {
+            try self.boxNilWithoutAffectingCodingPath(forKey: key)
+        }
+    }
+
+    func boxNilWithoutAffectingCodingPath(forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: <()>, key: \"\(StringConvertibleCodingKey(key))\"")
+
         let name = self.resolve(encodingKey: key)
         
         return .empty(name: name)
     }
-    
-    internal func box(bool value: Bool, forKey key: CodingKey) throws -> XMLElementNode {
-        self.codingPath.append(key)
-        defer { self.codingPath.removeLast() }
-        
+
+    func box(bool value: Bool, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
+        return try self.withCodingPath(appending: key) {
+            try self.boxWithoutAffectingCodingPath(bool: value, forKey: key)
+        }
+    }
+
+    func boxWithoutAffectingCodingPath(bool value: Bool, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
         let name = self.resolve(encodingKey: key)
         
         let formatter = XMLBoolFormatter()
@@ -171,11 +215,18 @@ extension XMLInternalEncoder {
         
         return .string(name: name, string: string)
     }
-    
-    internal func box<T: FixedWidthInteger>(integer value: T, forKey key: CodingKey) throws -> XMLElementNode {
-        self.codingPath.append(key)
-        defer { self.codingPath.removeLast() }
-        
+
+    func box<T: FixedWidthInteger>(integer value: T, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
+        return try self.withCodingPath(appending: key) {
+            try self.boxWithoutAffectingCodingPath(integer: value, forKey: key)
+        }
+    }
+
+    func boxWithoutAffectingCodingPath<T: FixedWidthInteger>(integer value: T, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
         let name = self.resolve(encodingKey: key)
         
         let formatter = XMLIntegerFormatter<T>()
@@ -183,11 +234,18 @@ extension XMLInternalEncoder {
         
         return .string(name: name, string: string)
     }
-    
-    internal func box<T: FixedWidthFloatingPoint>(floatingPoint value: T, forKey key: CodingKey) throws -> XMLElementNode {
-        self.codingPath.append(key)
-        defer { self.codingPath.removeLast() }
-        
+
+    func box<T: FixedWidthFloatingPoint>(floatingPoint value: T, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
+        return try self.withCodingPath(appending: key) {
+            try self.boxWithoutAffectingCodingPath(floatingPoint: value, forKey: key)
+        }
+    }
+
+    func boxWithoutAffectingCodingPath<T: FixedWidthFloatingPoint>(floatingPoint value: T, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
         let name = self.resolve(encodingKey: key)
         
         func nonConformingStrings() throws -> (String, String, String) {
@@ -218,38 +276,45 @@ extension XMLInternalEncoder {
         return .string(name: name, string: string)
     }
     
-    internal func box(string value: String, forKey key: CodingKey) throws -> XMLElementNode {
-        self.codingPath.append(key)
-        defer { self.codingPath.removeLast() }
-        
+    func box(string value: String, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
+        return try self.withCodingPath(appending: key) {
+            try self.boxWithoutAffectingCodingPath(string: value, forKey: key)
+        }
+    }
+
+    func boxWithoutAffectingCodingPath(string value: String, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
         let name = self.resolve(encodingKey: key)
-        
+
         let formatter = XMLStringFormatter()
         let string = try formatter.string(from: value)
-        
+
         return .string(name: name, string: string)
     }
     
-    internal func box<T: Encodable>(encodable value: T, forKey key: CodingKey) throws -> XMLElementNode {
-        self.codingPath.append(key)
-        defer { self.codingPath.removeLast() }
-        
-        return try self.boxWithoutAffectingCodingPath(encodable: value, forKey: key)
+    func box<T: Encodable>(encodable value: T, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
+        return try self.withCodingPath(appending: key) {
+            try self.boxWithoutAffectingCodingPath(encodable: value, forKey: key)
+        }
     }
     
-    internal func boxWithoutAffectingCodingPath<T: Encodable>(encodable value: T, forKey key: CodingKey) throws -> XMLElementNode {
+    func boxWithoutAffectingCodingPath<T: Encodable>(encodable value: T, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
         if T.self == Date.self || T.self == NSDate.self {
-            return try self.box(date: value as! Date, forKey: key)
+            return try self.boxWithoutAffectingCodingPath(date: value as! Date, forKey: key)
         } else if T.self == Data.self || T.self == NSData.self {
-            return try self.box(data: value as! Data, forKey: key)
+            return try self.boxWithoutAffectingCodingPath(data: value as! Data, forKey: key)
         } else if T.self == URL.self || T.self == NSURL.self {
-            return try self.box(url: value as! URL, forKey: key)
+            return try self.boxWithoutAffectingCodingPath(url: value as! URL, forKey: key)
         } else if T.self == Decimal.self || T.self == NSDecimalNumber.self {
-            return try self.box(decimal: value as! Decimal, forKey: key)
+            return try self.boxWithoutAffectingCodingPath(decimal: value as! Decimal, forKey: key)
         }
-        
-        self.codingPath.append(key)
-        defer { self.codingPath.removeLast() }
         
         try value.encode(to: self)
         
@@ -262,8 +327,18 @@ extension XMLInternalEncoder {
     }
     
     // MARK: - Internal:
-    
-    internal func box(decimal value: Decimal, forKey key: CodingKey) throws -> XMLElementNode {
+
+    func box(decimal value: Decimal, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
+        return try self.withCodingPath(appending: key) {
+            try self.boxWithoutAffectingCodingPath(decimal: value, forKey: key)
+        }
+    }
+
+    func boxWithoutAffectingCodingPath(decimal value: Decimal, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
         let name = self.resolve(encodingKey: key)
         
         let formatter = XMLDecimalFormatter()
@@ -271,8 +346,18 @@ extension XMLInternalEncoder {
         
         return .string(name: name, string: string)
     }
-    
-    internal func box(date value: Date, forKey key: CodingKey) throws -> XMLElementNode {
+
+    func box(date value: Date, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
+        return try self.withCodingPath(appending: key) {
+            try self.boxWithoutAffectingCodingPath(date: value, forKey: key)
+        }
+    }
+
+    func boxWithoutAffectingCodingPath(date value: Date, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
         let name = self.resolve(encodingKey: key)
         
         switch self.options.dateEncodingStrategy {
@@ -282,7 +367,7 @@ extension XMLInternalEncoder {
         case .secondsSince1970:
             let formatter = XMLDateFormatter(format: .secondsSince1970)
             let string = try formatter.string(from: value)
-            
+
             return .string(name: name, string: string)
         case .millisecondsSince1970:
             let formatter = XMLDateFormatter(format: .millisecondsSince1970)
@@ -311,8 +396,18 @@ extension XMLInternalEncoder {
             return self.storage.popContainerUnchecked()
         }
     }
-    
-    internal func box(data value: Data, forKey key: CodingKey) throws -> XMLElementNode {
+
+    func box(data value: Data, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
+        return try self.withCodingPath(appending: key) {
+            try self.boxWithoutAffectingCodingPath(data: value, forKey: key)
+        }
+    }
+
+    func boxWithoutAffectingCodingPath(data value: Data, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
         let name = self.resolve(encodingKey: key)
         
         switch self.options.dataEncodingStrategy {
@@ -337,8 +432,18 @@ extension XMLInternalEncoder {
             return self.storage.popContainerUnchecked()
         }
     }
-    
-    internal func box(url value: URL, forKey key: CodingKey) throws -> XMLElementNode {
+
+    func box(url value: URL, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
+        return try self.withCodingPath(appending: key) {
+            try self.boxWithoutAffectingCodingPath(url: value, forKey: key)
+        }
+    }
+
+    func boxWithoutAffectingCodingPath(url value: URL, forKey key: CodingKey) throws -> XMLElementNode {
+        print("📍 @ \(#function) -> value: \"\(value)\", key: \"\(StringConvertibleCodingKey(key))\"")
+
         let name = self.resolve(encodingKey: key)
         
         let formatter = XMLURLFormatter()

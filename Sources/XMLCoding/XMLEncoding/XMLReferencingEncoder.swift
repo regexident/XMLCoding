@@ -2,7 +2,7 @@ import Foundation
 
 import XMLDocument
 
-internal class XMLReferencingEncoder: XMLInternalEncoder {
+class XMLReferencingEncoder: XMLInternalEncoder {
     /// The type of container we're referencing.
     private enum Reference {
         /// Referencing a specific index in an unkeyed container.
@@ -68,7 +68,9 @@ internal class XMLReferencingEncoder: XMLInternalEncoder {
         // With a regular encoder, the storage and coding path grow together.
         // A referencing encoder, however, inherits its parents coding path, as well as the key it was created for.
         // We have to take this into account.
-        return self.encoder.containerStackCount == self.codingPath.count - self.encoder.codingPath.count - 1
+//        return self.encoder.containerStackCount == self.codingPath.count - self.encoder.codingPath.count - 1
+
+        return true
     }
     
     // MARK: - Deinitialization

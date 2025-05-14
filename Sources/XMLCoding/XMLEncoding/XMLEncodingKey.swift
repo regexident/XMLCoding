@@ -1,10 +1,10 @@
 import Foundation
 
-internal struct XMLEncodingKey {
+struct XMLEncodingKey {
     public let key: String
     public let xmlKey: String
     
-    internal static let unkeyedContainerKey: XMLEncodingKey = .init(
+    static let unkeyedContainerKey: XMLEncodingKey = .init(
         key: "!!!unkeyed!!!",
         xmlKey: "!!!unkeyed!!!"
     )
@@ -15,7 +15,6 @@ internal struct XMLEncodingKey {
     }
     
     public init(key: CodingKey, at codingPath: [CodingKey], keyEncodingStrategy: XMLEncoder.KeyEncodingStrategy) {
-        assert(!(key is XMLEncodingKey))
         switch keyEncodingStrategy {
         case .useDefaultKeys:
             self.init(key: key.stringValue, xmlKey: key.stringValue)

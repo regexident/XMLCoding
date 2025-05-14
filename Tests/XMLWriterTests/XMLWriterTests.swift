@@ -1,18 +1,7 @@
 import XCTest
+
 @testable import XMLDocument
 @testable import XMLWriter
-
-extension OutputStream {
-    var inMemoryData: Data? {
-        return self.property(forKey: .dataWrittenToMemoryStreamKey) as! Data?
-    }
-    
-    var inMemoryString: String? {
-        return self.inMemoryData.flatMap { data in
-            String(data: data, encoding: .utf8)
-        }
-    }
-}
 
 class XMLWriterTests: XCTestCase {
     typealias TestAction = (XMLWriter) throws -> ()
@@ -338,7 +327,7 @@ class XMLWriterTests: XCTestCase {
                 <bar>baz</bar>
                 <blee/>
             </foo>
-            
+                
             """
         )
     }
@@ -369,7 +358,7 @@ class XMLWriterTests: XCTestCase {
                 <baz/>
                 <![CDATA[blee]]>
             </foo>
-            
+                
             """
         )
     }
@@ -404,7 +393,7 @@ class XMLWriterTests: XCTestCase {
                     <![CDATA[blee]]>
                 </bar>
             </foo>
-            
+                
             """
         )
     }
@@ -473,7 +462,7 @@ class XMLWriterTests: XCTestCase {
             """
             <?xml version=\"1.0\" encoding=\"UTF-8\" ?>
             <foo/>
-            
+                
             """
         )
     }
@@ -516,7 +505,7 @@ class XMLWriterTests: XCTestCase {
                     <![CDATA[blee]]>
                 </bar>
             </foo>
-            
+                
             """
         )
     }
@@ -561,7 +550,7 @@ class XMLWriterTests: XCTestCase {
                     <![CDATA[blee]]>
                 </bar>
             </foo>
-            
+                
             """
         )
     }
@@ -585,7 +574,7 @@ class XMLWriterTests: XCTestCase {
             <foo>
                 <bar/>
             </foo>
-            
+                
             """
         )
         
@@ -596,7 +585,7 @@ class XMLWriterTests: XCTestCase {
             <foo>
             	<bar/>
             </foo>
-            
+                
             """
         )
     }

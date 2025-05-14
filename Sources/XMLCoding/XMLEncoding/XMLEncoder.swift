@@ -141,7 +141,8 @@ public class XMLEncoder {
         let container = XMLSingleValueEncodingContainer(
             key: key,
             referencing: encoder,
-            codingPath: codingPath
+            codingPath: codingPath,
+            wrapping: nil
         )
         
         try container.encodeWithoutAffectingCodingPath(value)

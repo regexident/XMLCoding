@@ -10,12 +10,6 @@ extension XMLElementNode {
         case .simple(let content):
             self.content = .simple(content)
         case .complex(var content):
-            var elements: [XMLElementNode] = []
-            for element in content.elements {
-//                if element.info.name.isEmpty {
-//                    element.ele
-//                }
-            }
             content.elements = content.elements.filter { element in
                 !element.info.name.isEmpty
             }

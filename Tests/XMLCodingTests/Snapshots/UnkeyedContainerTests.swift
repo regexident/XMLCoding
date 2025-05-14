@@ -5,63 +5,59 @@ import SnapshotTesting
 @testable import XMLCoding
 
 @available(iOS 11.0, macOS 10.13, tvOS 11.0, *)
-class KeyedContainerTests: XCTestCase, EncodingTestCase {
+class UnkeyedContainerTests: XCTestCase, EncodingTestCase {
     func testImplicitEncoding() {
         struct ImplicitEncoding: Codable {
-            let keyed: [String: String] = [
-                "foo": "foo value",
-                "bar": "bar value",
+            let unkeyed: [String] = [
+                "value 0",
+                "value 1",
             ]
         }
-        
+
         let value = ImplicitEncoding()
         assertSnapshot(matching: value, as: .xml())
     }
-    
+
     func testExplicitEncoding() {
         struct ExplicitEncoding: Codable {
-            let keyed: [String: String] = [
-                "foo": "foo value",
-                "bar": "bar value",
+            let unkeyed: [String] = [
+                "value 0",
+                "value 1",
             ]
-            
+
             func encode(to encoder: Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-                
-                try container.encode(self.keyed, forKey: .keyed)
+
+                try container.encode(self.unkeyed, forKey: .unkeyed)
             }
         }
-        
+
         let value = ExplicitEncoding()
         assertSnapshot(matching: value, as: .xml())
     }
-    
+
     func testManualEncoding() {
         struct ManualEncoding: Codable {
-            enum KeyedCodingKeys: String, CodingKey {
-                case foo
-                case bar
-            }
-
-            let keyed: [String: String] = [
-                "foo": "foo value",
-                "bar": "bar value",
+            let unkeyed: [String] = [
+                "value 0",
+                "value 1",
             ]
-            
+
             func encode(to encoder: Encoder) throws {
-//                try self.keyed.encode(to: encoder)
                 var container = encoder.container(keyedBy: CodingKeys.self)
-//
-                var keyedContainer = container.nestedContainer(keyedBy: KeyedCodingKeys.self, forKey: .keyed)
-                try keyedContainer.encode(self.keyed["foo"]!, forKey: .foo)
-                try keyedContainer.encode(self.keyed["bar"]!, forKey: .bar)
+
+                var unkeyedContainer = container.nestedUnkeyedContainer(forKey: .unkeyed)
+
+                for value in self.unkeyed {
+                    try unkeyedContainer.encode(value)
+                }
             }
         }
-        
+
         let value = ManualEncoding()
         assertSnapshot(matching: value, as: .xml())
     }
-    
+
     static var allTests = [
         ("testImplicitEncoding", testImplicitEncoding),
         ("testExplicitEncoding", testExplicitEncoding),
